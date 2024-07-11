@@ -10,6 +10,8 @@
 // 添加要在此处预编译的标头
 #include "framework.h"
 #include <glm/glm.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
