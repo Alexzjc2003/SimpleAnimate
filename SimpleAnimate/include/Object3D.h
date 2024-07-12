@@ -3,6 +3,7 @@
 #include <map>
 
 #include <Geometry.h>
+#include <Material.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 
@@ -11,7 +12,7 @@ namespace SA
   class Object3D
   {
   public:
-    Object3D(Geometry *geometry);
+    Object3D(Geometry *geometry, Material *material);
 
     void setPosition(const glm::vec3 &_pos);
     void setScale(const glm::vec3 &_scale);
@@ -34,6 +35,7 @@ namespace SA
     Object3D();
 
     Geometry *pGeometry;
+    Material *pMaterial;
 
     std::map<int, Object3D *> children;
     Object3D *parent;
