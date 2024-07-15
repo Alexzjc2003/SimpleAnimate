@@ -9,3 +9,9 @@ OrthoCamera::OrthoCamera(float _width, float _height, float _near, float _far)
 {
 }
 
+glm::mat4 OrthoCamera::getProjMatrix()
+{
+  return glm::ortho(
+      frustum.left, frustum.right,
+      frustum.bottom, frustum.top);
+}

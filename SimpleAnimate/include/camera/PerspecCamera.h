@@ -11,6 +11,8 @@ namespace SA
 
     float fov;
     float aspect;
+
+    virtual glm::mat4 getProjMatrix();
   };
 
 } // namespace SA

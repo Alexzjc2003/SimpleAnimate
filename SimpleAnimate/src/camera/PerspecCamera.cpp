@@ -12,7 +12,7 @@ PerspecCamera::PerspecCamera(float _fov, float _aspect, float _near, float _far)
       aspect(_aspect)
 {
   float _width = _near * tan(_fov / 2);
-  float _height = _aspect * _width;
+  float _height = _width / _aspect;
 
   frustum.top = _height;
   frustum.bottom = -_height;
@@ -20,4 +20,12 @@ PerspecCamera::PerspecCamera(float _fov, float _aspect, float _near, float _far)
   frustum.right = _width;
   frustum.near = _near;
   frustum.far = _far;
+}
+
+glm::mat4 PerspecCamera::getProjMatrix()
+{
+  return glm::perspective(
+      fov,
+      aspect,
+      frustum.near, frustum.far);
 }

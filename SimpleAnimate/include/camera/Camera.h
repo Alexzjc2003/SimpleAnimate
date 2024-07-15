@@ -13,6 +13,10 @@ namespace SA
     Camera();
     Camera(float _top, float _bottom, float _left, float _right, float _near, float _far);
 
+    glm::mat4 getViewMatrix();
+    virtual glm::mat4 getProjMatrix();
+
+
   protected:
     struct
     {

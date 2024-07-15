@@ -23,6 +23,7 @@ namespace SA
     glm::vec3 getScale() const;
     glm::vec3 getEuler() const;
     glm::quat getQuaternion() const;
+    glm::vec3 getDirection() const;
 
     glm::mat4 getModelLocal();
     glm::mat4 getModelWorld();
