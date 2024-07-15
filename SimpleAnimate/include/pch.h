@@ -8,11 +8,21 @@
 #define PCH_H
 
 // 添加要在此处预编译的标头
-#include "framework.h"
+
+#include <array>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+#include <cmath>
+
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/euler_angles.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
 #endif // PCH_H

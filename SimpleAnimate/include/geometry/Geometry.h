@@ -18,7 +18,7 @@ namespace SA
 			NR_SHAPE
 		};
 
-	}
+	} // namespace GEOMETRY
 
 	class Geometry
 	{

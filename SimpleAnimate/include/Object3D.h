@@ -2,8 +2,8 @@
 
 #include <map>
 
-#include <Geometry.h>
-#include <Material.h>
+#include <geometry/Geometry.h>
+#include <material/Material.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 

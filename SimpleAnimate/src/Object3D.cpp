@@ -22,9 +22,10 @@ Object3D::Object3D() : pGeometry(nullptr),
   ;
 }
 
-Object3D::Object3D(Geometry *geometry) : Object3D()
+Object3D::Object3D(Geometry *geometry, Material *material) : Object3D()
 {
   pGeometry = geometry;
+  pMaterial = material;
 }
 
 void Object3D::setPosition(const glm::vec3 &_pos)

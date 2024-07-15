@@ -9,9 +9,9 @@ Geometry::Geometry()
   setup();
 }
 
-void Geometry::setAttr(const ATTR_TYPE t, const Attribute &attr)
+void Geometry::addAttr(const Attribute &attr)
 {
-  this->attributes[t] = attr;
+  attributes[attr.type] = attr;
   _buf_needs_update = true;
 }
 
