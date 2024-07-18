@@ -15,11 +15,17 @@ Context::Context()
 
 void Context::loop(void (*func)())
 {
+  double _time = glfwGetTime();
+  timeDelta = _time - timePrev;
+  timePrev = _time;
+
   func();
 
-  
   glfwPollEvents();
 }
+
+double Context::getDelta() { return timeDelta; }
+double Context::getTime() { return glfwGetTime(); }
 
 void Context::initGLFW()
 {

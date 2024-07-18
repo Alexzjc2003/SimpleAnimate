@@ -7,8 +7,10 @@ Control::Control()
 {
 }
 
-void Control::bindContext(GLFWwindow *pWindow)
+void Control::onBindWindow(GLFWwindow *pWindow) {}
+void Control::bindWindow(GLFWwindow *pWindow)
 {
+  onBindWindow(pWindow);
   glfwSetWindowUserPointer(pWindow, this);
 
   glfwSetCursorPosCallback(pWindow, [](GLFWwindow *pWindow, double x_pos, double y_pos)
@@ -19,8 +21,10 @@ void Control::bindContext(GLFWwindow *pWindow)
                      { static_cast<Control *>(glfwGetWindowUserPointer(pWindow))->keyCallback(pWindow, key, scancode, action, mods); });
 }
 
+void Control::bindContext(Context *pContext) { this->pContext = pContext; }
 void Control::bindObject(Object3D *pObject) { this->pObject = pObject; }
 
 void Control::keyCallback(GLFWwindow *pWindow, int key, int scancode, int action, int mods) {}
 void Control::mouseMoveCallback(GLFWwindow *pWindow, double x_pos, double y_pos) {}
 void Control::scrollCallback(GLFWwindow *pWindow, double x_offset, double y_offset) {}
+void Control::inputLoop(GLFWwindow *pWindow) {}

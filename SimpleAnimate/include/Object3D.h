@@ -14,10 +14,13 @@ namespace SA
   public:
     Object3D(Geometry *geometry, Material *material);
 
-    void setPosition(const glm::vec3 &_pos);
-    void setScale(const glm::vec3 &_scale);
-    void setEuler(const glm::vec3 &_euler);
-    void setQuaternion(const glm::quat &_quat);
+    Object3D &setPosition(const glm::vec3 &_pos);
+    Object3D &setScale(const glm::vec3 &_scale);
+    Object3D &setEuler(const glm::vec3 &_euler);
+    Object3D &setQuaternion(const glm::quat &_quat);
+
+    Object3D &translateOnAxis(const glm::vec3 &_axis, const float _dist);
+    Object3D &rotateOnAxis(const glm::vec3 &_axis, const float _radians);
 
     glm::vec3 getPosition() const;
     glm::vec3 getScale() const;
@@ -28,8 +31,8 @@ namespace SA
     glm::mat4 getModelLocal();
     glm::mat4 getModelWorld();
 
-    void add(Object3D *object);
-    void remove(Object3D *object);
+    Object3D &add(Object3D *object);
+    Object3D &remove(Object3D *object);
     void removeFromParent();
 
   protected:

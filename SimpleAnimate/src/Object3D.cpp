@@ -28,30 +28,53 @@ Object3D::Object3D(Geometry *geometry, Material *material) : Object3D()
   pMaterial = material;
 }
 
-void Object3D::setPosition(const glm::vec3 &_pos)
+Object3D &Object3D::setPosition(const glm::vec3 &_pos)
 {
   position = _pos;
   _model_needs_update = true;
+
+  return *this;
 }
 
-void Object3D::setScale(const glm::vec3 &_scale)
+Object3D &Object3D::setScale(const glm::vec3 &_scale)
 {
   scale = _scale;
   _model_needs_update = true;
+
+  return *this;
 }
 
-void Object3D::setEuler(const glm::vec3 &_euler)
+Object3D &Object3D::setEuler(const glm::vec3 &_euler)
 {
   euler = _euler;
   quaternion = glm::eulerAngleYXZ(euler.y, euler.x, euler.z);
   _model_needs_update = true;
+
+  return *this;
 }
 
-void Object3D::setQuaternion(const glm::quat &_quat)
+Object3D &Object3D::setQuaternion(const glm::quat &_quat)
 {
   quaternion = _quat;
   euler = glm::eulerAngles(quaternion);
   _model_needs_update = true;
+
+  return *this;
+}
+
+/*
+ * Translate on axis
+ * Axis will be in local space, and normalization is on user's duty.
+ */
+Object3D &Object3D::translateOnAxis(const glm::vec3 &_axis, const float _dist)
+{
+  glm::vec3 _x = quaternion * _axis;
+  return setPosition(getPosition() + _x);
+}
+
+Object3D &Object3D::rotateOnAxis(const glm::vec3 &_axis, const float _radians)
+{
+  return setQuaternion(getQuaternion() *= glm::angleAxis(_radians, glm::normalize(_axis)));
 }
 
 glm::vec3 Object3D::getPosition() const
@@ -93,19 +116,23 @@ glm::mat4 Object3D::getModelWorld()
   return parent ? parent->getModelWorld() * _m : _m;
 }
 
-void Object3D::add(Object3D *object)
+Object3D &Object3D::add(Object3D *object)
 {
   children[object->id] = object;
   object->parent = this;
+
+  return *this;
 }
 
-void Object3D::remove(Object3D *object)
+Object3D &Object3D::remove(Object3D *object)
 {
   if (children[object->id])
   {
     object->parent = nullptr;
     children.erase(object->id);
   }
+
+  return *this;
 }
 
 void Object3D::removeFromParent()
