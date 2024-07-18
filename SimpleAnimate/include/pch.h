@@ -10,8 +10,10 @@
 // 添加要在此处预编译的标头
 
 #include <array>
+#include <fstream>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <unordered_map>
 #include <vector>
 

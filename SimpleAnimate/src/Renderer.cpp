@@ -17,6 +17,6 @@ Renderer::Renderer()
 
 void Renderer::useControl(Control &control)
 {
-  control.bindContext(pWindow);
+  control.bindWindow(pWindow);
 }
 
