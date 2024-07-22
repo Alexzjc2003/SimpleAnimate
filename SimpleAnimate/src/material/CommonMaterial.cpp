@@ -1,18 +1,14 @@
 #include "pch.h"
-#include "CommonMaterial.h"
+#include "material/CommonMaterial.h"
 
 using namespace SA;
 
-// CommonMaterial::CommonMaterial() : color(0xff)
-// {
-// }
-
-CommonMaterial::CommonMaterial(const char *_filename)
+CommonMaterial::CommonMaterial(
+    const std::unordered_map<std::string, Texture *> &_maps = {},
+    const Color &_color = 0xffffff)
+    : //  Material(_maps),
+      color(_color)
 {
-  textureId = loadTextureFromFile(_filename);
+  diffuseMap = getMap(_maps, "diffuse");
 }
 
-CommonMaterial::CommonMaterial(const glm::vec3 &_color) : color(_color)
-{
-  textureId = loadTextureFromColor(_color);
-}

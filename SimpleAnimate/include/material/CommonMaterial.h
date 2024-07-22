@@ -1,20 +1,23 @@
-#include <material/Material.h>
+#include "material/Material.h"
+#include <Color.h>
+
+#include <string>
 #include <glm/glm.hpp>
 
 namespace SA
 {
   class CommonMaterial : public Material
   {
-
   public:
-    // CommonMaterial();
-    CommonMaterial(const glm::vec3 &_color);
-    CommonMaterial(const char *_filename);
-
-    glm::vec3 color;
-    GLuint textureId;
+    CommonMaterial(
+        const std::unordered_map<std::string, Texture *> &_maps = {},
+        const Color &_color = 0xffffff);
 
   private:
-    virtual void setup() { type = MATERIAL::TYPE::COMMON; }
+    Color color;
+
+    Texture *diffuseMap;
+
+    
   };
 } // namespace SA
