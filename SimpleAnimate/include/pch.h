@@ -12,8 +12,10 @@
 #include <array>
 #include <fstream>
 #include <iostream>
-#include <string>
+#include <list>
 #include <sstream>
+#include <stack>
+#include <string>
 #include <unordered_map>
 #include <vector>
 

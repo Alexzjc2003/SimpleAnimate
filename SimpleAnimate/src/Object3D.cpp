@@ -142,3 +142,81 @@ void Object3D::removeFromParent()
     parent->remove(this);
   }
 }
+
+// iterators
+using iterator = Object3D::iterator;
+iterator::iterator(const iterator::pointer_type _p)
+    : pObj(_p), pRoot(_p)
+{
+  if (!_p)
+    return;
+}
+
+iterator::reference_type iterator::operator*() const
+{
+  return *pObj;
+}
+
+iterator::pointer_type iterator::operator->()
+{
+  return pObj;
+}
+
+iterator &iterator::operator++()
+{
+  // check if end()
+  if (!pObj)
+    return *this;
+
+  // check if any children
+  if (!pObj->children.empty())
+  {
+    pObj = pObj->children.begin()->second;
+    return *this;
+  }
+
+  // no children, recursively find next "sibling"
+  while (pObj != pRoot)
+  {
+    auto p = pObj->parent;
+    auto it = ++(p->children.find(pObj->id));
+    if (it == p->children.end())
+    {
+      pObj = p;
+      continue;
+    }
+    pObj = it->second;
+    return *this;
+  }
+
+  // next is end()
+  pObj = nullptr;
+  return *this;
+}
+
+iterator iterator::operator++(int)
+{
+  iterator temp = *this;
+  ++(*this);
+  return temp;
+}
+
+bool iterator::operator==(const iterator &other) const
+{
+  return pObj == other.pObj;
+}
+
+bool iterator::operator!=(const iterator &other) const
+{
+  return pObj != other.pObj;
+}
+
+iterator Object3D::begin()
+{
+  return iterator(this);
+}
+
+Object3D::iterator Object3D::end()
+{
+  return iterator(nullptr);
+}
