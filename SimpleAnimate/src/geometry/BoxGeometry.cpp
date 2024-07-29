@@ -251,3 +251,11 @@ void BoxGeometry::setup()
   // 3. set buffer
   setBuffer();
 }
+
+
+void BoxGeometry::draw()
+{
+	VAO.active();
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+	VAO.deactive();
+}

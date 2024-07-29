@@ -1,6 +1,7 @@
 #pragma once
 
 #include <texture/Texture.h>
+#include <shader/Shader.h>
 #include <glad/glad.h>
 #include <unordered_map>
 
@@ -11,6 +12,8 @@ namespace SA
   public:
     // std::unordered_map<const std::string &, Texture *> maps;
     int id;
+    Shader* pShader;
+    virtual void updateUniforms();
 
   protected:
     Material();

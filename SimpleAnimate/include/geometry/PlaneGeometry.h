@@ -7,6 +7,7 @@ namespace SA
   {
   public:
     PlaneGeometry();
+    virtual void draw();
 
   private:
     virtual void setup();

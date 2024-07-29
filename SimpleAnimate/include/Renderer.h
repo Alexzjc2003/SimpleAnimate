@@ -1,7 +1,10 @@
 #pragma once
 
-#include <control/control.h>
+#include <control/Control.h>
+#include <Scene.h>
 #include <glfw/glfw3.h>
+#include <camera/Camera.h>
+#include <Object3D.h>
 
 namespace SA
 {
@@ -16,10 +19,11 @@ namespace SA
   public:
     Renderer();
     void useControl(Control &control);
+    void render(Scene &scene, Camera &camera);
 
   private:
     GLFWwindow *pWindow;
 
-
+    void renderObject(Object3D &object, Camera& camera) const;
   };
 } // namespace SA

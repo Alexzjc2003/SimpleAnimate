@@ -71,3 +71,10 @@ void PlaneGeometry::setup()
   // 3. set buffer
   setBuffer();
 }
+
+void PlaneGeometry::draw()
+{
+	VAO.active();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+	VAO.deactive();
+}

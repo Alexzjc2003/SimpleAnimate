@@ -72,11 +72,11 @@ namespace SA
     iterator begin();
     iterator end();
 
-  protected:
-    Object3D();
-
     Geometry *pGeometry;
     Material *pMaterial;
+
+  protected:
+    Object3D();
 
     std::map<int, Object3D *> children;
     Object3D *parent;

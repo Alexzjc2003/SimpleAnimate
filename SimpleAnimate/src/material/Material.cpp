@@ -9,6 +9,8 @@ Material::Material() : id(nextId++) {}
 // Material::Material(const std::unordered_map<const std::string &, Texture *> _maps = {})
 //     : maps(_maps), id(nextId++) {}
 
+void Material::updateUniforms() {}
+
 Texture *Material::getMap(const std::unordered_map<std::string, Texture *> &_maps, const std::string &name)
 {
   try

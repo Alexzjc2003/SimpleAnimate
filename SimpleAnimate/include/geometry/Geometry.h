@@ -26,6 +26,7 @@ namespace SA
 		void setBuffer();
 		void addAttr(const Attribute &attr);
 		void setIndices(const std::vector<GLuint> &indices);
+		virtual void draw() = 0;
 
 	protected:
 		Geometry();

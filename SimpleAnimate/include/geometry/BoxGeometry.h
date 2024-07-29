@@ -8,6 +8,8 @@ namespace SA
   public:
     BoxGeometry();
 
+    virtual void draw();
+
   private:
     virtual void setup();
   };
