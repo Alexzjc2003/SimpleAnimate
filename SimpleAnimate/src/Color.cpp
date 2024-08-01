@@ -6,7 +6,7 @@ using namespace SA;
 Color::Color(const unsigned char &_r,
              const unsigned char &_g,
              const unsigned char &_b,
-             const unsigned char &_a = 0xff)
+             const unsigned char &_a)
     : _color(_r, _g, _b, _a)
 {
 }

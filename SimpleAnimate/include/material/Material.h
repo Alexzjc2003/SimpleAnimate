@@ -1,5 +1,6 @@
 #pragma once
 
+#include <def.h>
 #include <texture/Texture.h>
 #include <shader/Shader.h>
 #include <glad/glad.h>
@@ -7,7 +8,7 @@
 
 namespace SA
 {
-  class Material
+  class SA_API Material
   {
   public:
     // std::unordered_map<const std::string &, Texture *> maps;

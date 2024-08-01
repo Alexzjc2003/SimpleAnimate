@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Attribute.h"
+#include "geometry/Attribute.h"
 
 using namespace SA;
 
@@ -14,7 +14,7 @@ Attribute::Attribute()
   
 }
 
-Attribute::Attribute(const ATTR_TYPE _t, const std::vector<float> &_arr, size_t _sz, bool _isNorm = false)
+Attribute::Attribute(const ATTR_TYPE _t, const std::vector<float> &_arr, size_t _sz, bool _isNorm)
 {
   this->arr = _arr;
   this->sz = _sz;

@@ -15,40 +15,154 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClCompile Include="..\externals\src\glad.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera\Camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera\OrthoCamara.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera\PerspecCamera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Color.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Context.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\Control.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\FPSControl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\Attribute.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\BoxGeometry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\Geometry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\GeometryVAO.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\PlaneGeometry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\material\CommonMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\material\Material.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader\Shader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader\StaticShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture\ImageTexture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture\Texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\camera\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="include\camera\OrthoCamera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry.h">
+    <ClInclude Include="include\camera\PerspecCamera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Attribute.h">
+    <ClInclude Include="include\Color.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
+    <ClInclude Include="include\Context.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="GeometryVAO.h">
+    <ClInclude Include="include\control\Control.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\FPSControl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\debug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Attribute.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\BoxGeometry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Geometry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\GeometryVAO.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\PlaneGeometry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\material\CommonMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\material\Material.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Object3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shader\Shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shader\ShaderUniform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shader\StaticShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\texture\ImageTexture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\texture\Texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\def.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Attribute.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="GeometryVAO.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

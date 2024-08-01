@@ -7,7 +7,7 @@
 
 namespace SA
 {
-  class CommonMaterial : public Material
+  class SA_API CommonMaterial : public Material
   {
   public:
     CommonMaterial(
@@ -21,6 +21,6 @@ namespace SA
 
     Texture *diffuseMap;
 
-    static StaticShader shader;
+    // static StaticShader shader;
   };
 } // namespace SA

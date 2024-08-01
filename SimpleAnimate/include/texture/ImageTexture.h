@@ -5,7 +5,7 @@
 
 namespace SA
 {
-  class ImageTexture : public Texture
+  class SA_API ImageTexture : public Texture
   {
   public:
     ImageTexture(

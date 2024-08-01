@@ -1,9 +1,11 @@
 #pragma once
+
+#include <def.h>
 #include <glad/glad.h>
 
 namespace SA
 {
-  class Shader
+  class SA_API Shader
   {
   public:
     const Shader &use() const;

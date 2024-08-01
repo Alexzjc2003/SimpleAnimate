@@ -3,7 +3,7 @@
 
 namespace SA
 {
-  class BoxGeometry : public Geometry
+  class SA_API BoxGeometry : public Geometry
   {
   public:
     BoxGeometry();

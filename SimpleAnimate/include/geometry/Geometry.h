@@ -3,15 +3,15 @@
 #include <array>
 #include <vector>
 
-#include <GeometryVAO.h>
-#include <Attribute.h>
+#include <geometry/GeometryVAO.h>
+#include <geometry/Attribute.h>
 
 namespace SA
 {
 
 	namespace GEOMETRY
 	{
-		enum SHAPE : size_t
+		enum SA_API SHAPE : size_t
 		{
 			PLANE,
 			BOX,
@@ -20,7 +20,7 @@ namespace SA
 
 	} // namespace GEOMETRY
 
-	class Geometry
+	class SA_API Geometry
 	{
 	public:
 		void setBuffer();

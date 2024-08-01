@@ -3,7 +3,7 @@
 
 namespace SA
 {
-  class PerspecCamera : public Camera
+  class SA_API PerspecCamera : public Camera
   {
   public:
     PerspecCamera();

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "BoxGeometry.h"
+#include "geometry/BoxGeometry.h"
 
 using namespace SA;
 
@@ -233,6 +233,11 @@ static std::vector<float> _box_bitangent
 	 1.0f,  0.0f,  0.0f,  // bottom-left
 };
 
+BoxGeometry::BoxGeometry() 
+{
+	setup();
+}
+
 void BoxGeometry::setup()
 {
   // 1. set attribs
@@ -242,20 +247,20 @@ void BoxGeometry::setup()
   addAttr(Attribute(ATTR_TYPE::TANGENT  , _box_tangent  , 3));
   addAttr(Attribute(ATTR_TYPE::BITANGENT, _box_bitangent, 3));
   
-  // 2. set indices
+  // 2. set buffer
+  setBuffer();
+
+  // 3. set indices
   auto _indices = std::vector<GLuint>(36);
   for(size_t i = 0; i < _indices.size(); ++i)
     _indices[i] = i;
   setIndices(_indices);
-
-  // 3. set buffer
-  setBuffer();
 }
 
 
 void BoxGeometry::draw()
 {
-	VAO.active();
+	VAO.activate();
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
-	VAO.deactive();
+	VAO.deactivate();
 }

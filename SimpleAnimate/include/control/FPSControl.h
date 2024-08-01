@@ -4,7 +4,7 @@
 
 namespace SA
 {
-  class FPSControl : public Control
+  class SA_API FPSControl : public Control
   {
   public:
     FPSControl();

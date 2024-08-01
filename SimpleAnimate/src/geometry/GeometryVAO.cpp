@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "GeometryVAO.h"
+#include "geometry/GeometryVAO.h"
 
 using namespace SA;
 
@@ -18,12 +18,12 @@ GeometryVAO::GeometryVAO()
   stride = 0;
 }
 
-void GeometryVAO::active() const
+void GeometryVAO::activate() const
 {
   glBindVertexArray(VAO);
 }
 
-void GeometryVAO::deactive() const
+void GeometryVAO::deactivate() const
 {
   glBindVertexArray(0);
 }
@@ -33,7 +33,7 @@ void GeometryVAO::fromAttribs(const std::vector<Attribute> &attrs)
   glBindVertexArray(VAO);
 
   // 1. first make vertex array buffer
-  // calculate and update vertex info(stride, offsets)
+  // calculate and update vertex info (stride, offsets)
   size_t _cnt = SIZE_MAX;
   size.clear();
   offset.clear();
@@ -46,25 +46,33 @@ void GeometryVAO::fromAttribs(const std::vector<Attribute> &attrs)
   }
   count = _cnt;
 
-  // construct array buffer
+  // 2. construct array buffer
   _arr_buf.reserve(sizeof(attrs));
   _arr_buf.clear();
+
+  // 2.1. calculate offsets
+  size_t _offset = 0;
+  for (auto &attr : attrs)
+  {
+    offset.push_back(_offset);
+    _offset += attr.sz;
+  }
+
+  // 2.2. copy attrs to the array buffer
   for (size_t j = 0; j < count; ++j)
   {
-    size_t _offset = 0;
     for (auto &attr : attrs)
     {
-      offset.push_back(_offset);
       _arr_buf.insert(_arr_buf.end(),
-                      attr.getArray().begin() + j * stride + _offset,
-                      attr.getArray().begin() + j * stride + _offset + attr.sz);
-      _offset += attr.sz;
+                      attr.getArray().begin() + j * attr.sz,
+                      attr.getArray().begin() + j * attr.sz + attr.sz);
     }
   }
 
+  // 3. send to buffer and enable attrs
   glBufferData(GL_ARRAY_BUFFER, _arr_buf.size() * sizeof(float), _arr_buf.data(), GL_STATIC_DRAW);
 
-  for (size_t i = 0; i < count; ++i)
+  for (size_t i = 0; i < attrs.size(); ++i)
   {
     auto &attr = attrs[i];
     if (attr.type < ATTR_TYPE::NR_ATTR_TYPE)

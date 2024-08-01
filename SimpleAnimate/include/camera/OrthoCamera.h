@@ -3,7 +3,7 @@
 
 namespace SA
 {
-  class OrthoCamera : public Camera
+  class SA_API OrthoCamera : public Camera
   {
   public:
     OrthoCamera();

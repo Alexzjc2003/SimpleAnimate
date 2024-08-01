@@ -2,12 +2,13 @@
 
 #include <glm/glm.hpp>
 #include <Object3D.h>
+#include <def.h>
 
 #include <glm/glm.hpp>
 
 namespace SA
 {
-  class Camera : public Object3D
+  class SA_API Camera : public Object3D
   {
   public:
     Camera();

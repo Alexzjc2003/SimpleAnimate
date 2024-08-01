@@ -1,8 +1,9 @@
 #pragma once
 
 #include <map>
-#include <stack>
+// #include <stack>
 
+#include <def.h>
 #include <geometry/Geometry.h>
 #include <material/Material.h>
 #include <glm/glm.hpp>
@@ -10,7 +11,7 @@
 
 namespace SA
 {
-  class Object3D
+  class SA_API Object3D
   {
   public:
     Object3D(Geometry *geometry, Material *material);
@@ -42,7 +43,7 @@ namespace SA
     void removeFromParent();
 
     // iterators
-    class iterator
+    class SA_API iterator
     {
     public:
       using iterator_category = std::forward_iterator_tag;
@@ -84,7 +85,7 @@ namespace SA
     int id;
 
   private:
-    Object3D &operator=(const Object3D &) {}
+    Object3D& operator=( const Object3D& ) { return *this; }
     Object3D(const Object3D &) {}
     static int nextId;
 

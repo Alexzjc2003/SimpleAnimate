@@ -1,12 +1,12 @@
 #include "pch.h"
-#include "Geometry.h"
+#include "geometry/Geometry.h"
 
 using namespace SA;
 
 Geometry::Geometry()
 {
   _shape = GEOMETRY::SHAPE::NR_SHAPE;
-  setup();
+  // setup();
 }
 
 void Geometry::addAttr(const Attribute &attr)

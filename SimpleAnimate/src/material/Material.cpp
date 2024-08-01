@@ -5,7 +5,7 @@ using namespace SA;
 
 int Material::nextId = 1;
 
-Material::Material() : id(nextId++) {}
+Material::Material() : id(nextId++), pShader(nullptr) {}
 // Material::Material(const std::unordered_map<const std::string &, Texture *> _maps = {})
 //     : maps(_maps), id(nextId++) {}
 

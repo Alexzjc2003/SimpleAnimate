@@ -3,7 +3,7 @@
 
 namespace SA
 {
-  class PlaneGeometry : public Geometry
+  class SA_API PlaneGeometry : public Geometry
   {
   public:
     PlaneGeometry();

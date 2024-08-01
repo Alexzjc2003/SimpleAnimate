@@ -8,12 +8,13 @@
 
 #include <Object3D.h>
 #include <Context.h>
+#include <def.h>
 
 #include <glfw/glfw3.h>
 
 namespace SA
 {
-  class Control
+  class SA_API Control
   {
   public:
     void bindContext(Context *pContext);

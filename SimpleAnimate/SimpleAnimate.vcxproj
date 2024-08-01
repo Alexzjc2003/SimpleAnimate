@@ -18,6 +18,63 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\externals\src\glad.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\camera\Camera.cpp" />
+    <ClCompile Include="src\camera\OrthoCamara.cpp" />
+    <ClCompile Include="src\camera\PerspecCamera.cpp" />
+    <ClCompile Include="src\Color.cpp" />
+    <ClCompile Include="src\Context.cpp" />
+    <ClCompile Include="src\control\Control.cpp" />
+    <ClCompile Include="src\control\FPSControl.cpp" />
+    <ClCompile Include="src\geometry\Attribute.cpp" />
+    <ClCompile Include="src\geometry\BoxGeometry.cpp" />
+    <ClCompile Include="src\geometry\Geometry.cpp" />
+    <ClCompile Include="src\geometry\GeometryVAO.cpp" />
+    <ClCompile Include="src\geometry\PlaneGeometry.cpp" />
+    <ClCompile Include="src\material\CommonMaterial.cpp" />
+    <ClCompile Include="src\material\Material.cpp" />
+    <ClCompile Include="src\Object3D.cpp" />
+    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\shader\Shader.cpp" />
+    <ClCompile Include="src\shader\StaticShader.cpp" />
+    <ClCompile Include="src\texture\ImageTexture.cpp" />
+    <ClCompile Include="src\texture\Texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\camera\Camera.h" />
+    <ClInclude Include="include\camera\OrthoCamera.h" />
+    <ClInclude Include="include\camera\PerspecCamera.h" />
+    <ClInclude Include="include\Color.h" />
+    <ClInclude Include="include\Context.h" />
+    <ClInclude Include="include\control\Control.h" />
+    <ClInclude Include="include\control\FPSControl.h" />
+    <ClInclude Include="include\debug.h" />
+    <ClInclude Include="include\def.h" />
+    <ClInclude Include="include\geometry\Attribute.h" />
+    <ClInclude Include="include\geometry\BoxGeometry.h" />
+    <ClInclude Include="include\geometry\Geometry.h" />
+    <ClInclude Include="include\geometry\GeometryVAO.h" />
+    <ClInclude Include="include\geometry\PlaneGeometry.h" />
+    <ClInclude Include="include\material\CommonMaterial.h" />
+    <ClInclude Include="include\material\Material.h" />
+    <ClInclude Include="include\Object3D.h" />
+    <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\Renderer.h" />
+    <ClInclude Include="include\Scene.h" />
+    <ClInclude Include="include\shader\Shader.h" />
+    <ClInclude Include="include\shader\ShaderUniform.h" />
+    <ClInclude Include="include\shader\StaticShader.h" />
+    <ClInclude Include="include\texture\ImageTexture.h" />
+    <ClInclude Include="include\texture\Texture.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -40,7 +97,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -71,12 +128,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\include;E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\SimpleAnimate\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\src;E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\SimpleAnimate\src;$(SourcePath)</SourcePath>
+    <OutDir>.\bin\$(configuration)\</OutDir>
+    <IntDir>.\obj\$(configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\include;E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\SimpleAnimate\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\SimpleAnimate\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -116,16 +177,20 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;SA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y $(TargetPath) $(TargetDir)..\..\..\..\SimpleAnimateExample\SimpleAnimateExample\SimpleAnimate.dll</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -135,7 +200,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -146,26 +211,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Attribute.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="Geometry.h" />
-    <ClInclude Include="GeometryVAO.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Vertex.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Attribute.cpp" />
-    <ClCompile Include="Geometry.cpp" />
-    <ClCompile Include="GeometryVAO.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

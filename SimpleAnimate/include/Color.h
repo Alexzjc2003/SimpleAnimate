@@ -1,9 +1,11 @@
 #pragma once
+
+#include <def.h>
 #include <glm/glm.hpp>
 
 namespace SA
 {
-  class Color
+  class SA_API Color
   {
   private:
     glm::vec<4, unsigned char> _color;

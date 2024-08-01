@@ -37,23 +37,18 @@ GLuint Shader::create_shader_from_strings(const char **str, GLsizei num, GLenum 
 
 GLuint Shader::create_shader_from_file(const char *path, GLenum type)
 {
-  const char *_c;
   try
   {
-#ifdef PATH_TO_SHADER_FILE
-    std::string _path(PATH_TO_SHADER_FILE);
-#else
-    std::string _path("");
-#endif
-
     std::ifstream ifs_shader;
     ifs_shader.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-    ifs_shader.open(_path + std::string(path));
+    ifs_shader.open(path);
 
     std::stringstream ss_shader;
     ss_shader << ifs_shader.rdbuf();
 
-    _c = ss_shader.str().c_str();
+    std::string _s = ss_shader.str();
+    const char* _c = _s.c_str();
+    return create_shader_from_strings(&_c, 1, type);
   }
   catch (const std::exception &e)
   {
@@ -61,8 +56,7 @@ GLuint Shader::create_shader_from_file(const char *path, GLenum type)
               << e.what() << std::endl;
     return 0;
   }
-
-  return create_shader_from_strings(&_c, 1, type);
+  return 0;
 }
 
 void Shader::link()

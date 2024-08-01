@@ -4,11 +4,13 @@
 #include <vector>
 #include <string>
 
+#include <def.h>
+
 namespace SA
 {
 	// Be aware when changing following enums
 	// should be in the same order as in shaders
-	enum ATTR_TYPE : size_t
+	enum SA_API ATTR_TYPE : size_t
 	{
 		POSITION  = 0,
 		NORMAL    = 1,
@@ -17,7 +19,7 @@ namespace SA
 		BITANGENT = 4,
 		NR_ATTR_TYPE
 	};
-	class Attribute
+	class SA_API Attribute
 	{
 	public:
 		Attribute();

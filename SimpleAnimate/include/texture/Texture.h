@@ -1,10 +1,12 @@
 #pragma once
 #include <unordered_map>
+
+#include <def.h>
 #include <glad/glad.h>
 
 namespace SA
 {
-  class Texture
+  class SA_API Texture
   {
   public:
     Texture(

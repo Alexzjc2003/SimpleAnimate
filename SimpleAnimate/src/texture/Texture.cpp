@@ -7,10 +7,10 @@ int Texture::nextId = 1;
 
 Texture::Texture(
     GLenum _target,
-    GLsizei _width = 0, GLsizei _height = 0,
-    GLenum _wrapS = GL_CLAMP_TO_EDGE, GLenum _wrapT = GL_CLAMP_TO_EDGE,
-    GLenum _minFilter = GL_LINEAR_MIPMAP_LINEAR, GLenum _magFilter = GL_LINEAR,
-    GLenum _format = GL_RGBA, GLenum _type = GL_UNSIGNED_BYTE)
+    GLsizei _width, GLsizei _height,
+    GLenum _wrapS, GLenum _wrapT,
+    GLenum _minFilter, GLenum _magFilter,
+    GLenum _format, GLenum _type)
     : target(_target),
       width(_width), height(_height),
       wrapS(_wrapS), wrapT(_wrapT),

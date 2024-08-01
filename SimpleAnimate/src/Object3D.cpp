@@ -8,6 +8,7 @@ using namespace SA;
 int Object3D::nextId = 1;
 
 Object3D::Object3D() : pGeometry(nullptr),
+                       pMaterial(nullptr),
                        children({}),
                        parent(nullptr),
                        scale(1.0f),
@@ -80,6 +81,11 @@ Object3D &Object3D::rotateOnAxis(const glm::vec3 &_axis, const float _radians)
 glm::vec3 Object3D::getPosition() const
 {
   return position;
+}
+
+glm::vec3 Object3D::getScale() const
+{
+  return scale;
 }
 
 glm::vec3 Object3D::getEuler() const

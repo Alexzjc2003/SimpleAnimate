@@ -4,7 +4,7 @@
 
 namespace SA
 {
-  class StaticShader : public Shader
+  class SA_API StaticShader : public Shader
   {
   public:
     StaticShader(const char *_vs_path, const char *_fs_path);

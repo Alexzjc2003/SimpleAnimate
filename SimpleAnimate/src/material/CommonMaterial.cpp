@@ -3,20 +3,20 @@
 
 using namespace SA;
 
-StaticShader CommonMaterial::shader = StaticShader("./static/commom/.vert", "./static/common/.frag");
+// StaticShader CommonMaterial::shader = StaticShader("./static/commom/.vert", "./static/common/.frag");
 
 CommonMaterial::CommonMaterial(
-    const std::unordered_map<std::string, Texture *> &_maps = {},
-    const Color &_color = 0xffffff)
+    const std::unordered_map<std::string, Texture *> &_maps,
+    const Color &_color)
     : //  Material(_maps),
       color(_color)
 {
   diffuseMap = getMap(_maps, "diffuse");
-  pShader = &shader;
+  pShader = pShader ? pShader : new StaticShader("./static/shader/static/common/.vert", "./static/shader/static/common/.frag");
 }
 
 void CommonMaterial::updateUniforms()
 {
-  shader.use()
+  pShader->use()
       .set("uDiffuse", diffuseMap->id);
 }

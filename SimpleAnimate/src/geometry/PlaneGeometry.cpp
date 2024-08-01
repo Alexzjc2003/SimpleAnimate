@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "PlaneGeometry.h"
+#include "geometry/PlaneGeometry.h"
 
 using namespace SA;
 
@@ -53,6 +53,11 @@ static const std::vector<float> _plane_bitangent
 	 0.0f,  1.0f,  0.0f,  // bottom-left
 };
 
+PlaneGeometry::PlaneGeometry() 
+{
+	setup();
+}
+
 void PlaneGeometry::setup()
 {
   // 1. set attribs
@@ -62,19 +67,19 @@ void PlaneGeometry::setup()
   addAttr(Attribute(ATTR_TYPE::TANGENT  , _plane_tangent  , 3));
   addAttr(Attribute(ATTR_TYPE::BITANGENT, _plane_bitangent, 3));
   
-  // 2. set indices
+  // 2. set buffer
+  setBuffer();
+
+  // 3. set indices
   auto _indices = std::vector<GLuint>(6);
   for(size_t i = 0; i < _indices.size(); ++i)
     _indices[i] = i;
   setIndices(_indices);
-
-  // 3. set buffer
-  setBuffer();
 }
 
 void PlaneGeometry::draw()
 {
-	VAO.active();
+	VAO.activate();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-	VAO.deactive();
+	VAO.deactivate();
 }

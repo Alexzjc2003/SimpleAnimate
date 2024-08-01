@@ -5,9 +5,9 @@ using namespace SA;
 
 ImageTexture::ImageTexture(
     const char *_path,
-    GLenum _wrapS = GL_CLAMP_TO_EDGE, GLenum _wrapT = GL_CLAMP_TO_EDGE,
-    GLenum _minFilter = GL_LINEAR_MIPMAP_LINEAR, GLenum _magFilter = GL_LINEAR,
-    GLenum _type = GL_UNSIGNED_BYTE)
+    GLenum _wrapS, GLenum _wrapT,
+    GLenum _minFilter, GLenum _magFilter,
+    GLenum _type)
     : Texture(GL_TEXTURE_2D,
               0, 0,
               _wrapS, _wrapT,
