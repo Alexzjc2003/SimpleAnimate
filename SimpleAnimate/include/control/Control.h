@@ -6,8 +6,8 @@
 
 #include <functional>
 
-#include <Object3D.h>
-#include <Context.h>
+#include <core/Object3D.h>
+#include <core/Context.h>
 #include <def.h>
 
 #include <glfw/glfw3.h>

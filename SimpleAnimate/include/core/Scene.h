@@ -1,7 +1,7 @@
 #pragma once
 
 #include <def.h>
-#include <Object3D.h>
+#include <core/Object3D.h>
 
 namespace SA
 {

@@ -1,6 +1,6 @@
 #include "material/Material.h"
 #include <shader/StaticShader.h>
-#include <Color.h>
+#include <core/Color.h>
 
 #include <string>
 #include <glm/glm.hpp>

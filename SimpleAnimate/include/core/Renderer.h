@@ -1,10 +1,10 @@
 #pragma once
 
 #include <control/Control.h>
-#include <Scene.h>
+#include <core/Scene.h>
 #include <glfw/glfw3.h>
 #include <camera/Camera.h>
-#include <Object3D.h>
+#include <core/Object3D.h>
 
 namespace SA
 {

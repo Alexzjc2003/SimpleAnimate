@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Object3D.h"
+#include "core/Object3D.h"
 
 #include <glm/gtx/euler_angles.hpp>
 

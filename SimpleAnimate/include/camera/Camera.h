@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include <Object3D.h>
+#include <core/Object3D.h>
 #include <def.h>
 
 #include <glm/glm.hpp>
