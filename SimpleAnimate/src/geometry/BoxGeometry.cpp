@@ -233,7 +233,7 @@ static std::vector<float> _box_bitangent
 	 1.0f,  0.0f,  0.0f,  // bottom-left
 };
 
-BoxGeometry::BoxGeometry() 
+BoxGeometry::BoxGeometry() : Geometry()
 {
 	setup();
 }

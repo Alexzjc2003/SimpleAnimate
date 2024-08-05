@@ -18,20 +18,20 @@ namespace SA
   {
   public:
     void bindContext(Context *pContext);
-    void bindWindow(GLFWwindow *pWindow);
     void bindObject(Object3D *pObject);
 
-    virtual void keyCallback(GLFWwindow *pWindow, int key, int scancode, int action, int mods);
-    virtual void mouseMoveCallback(GLFWwindow *pWindow, double x_pos, double y_pos);
-    virtual void scrollCallback(GLFWwindow *pWindow, double x_offset, double y_offset);
+    virtual void keyCallback(GLFWwindow *pWindow, int key, int scancode, int action, int mods) = 0;
+    virtual void mouseMoveCallback(GLFWwindow *pWindow, double x_pos, double y_pos) = 0;
+    virtual void scrollCallback(GLFWwindow *pWindow, double x_offset, double y_offset) = 0;
 
-    virtual void inputLoop(GLFWwindow *pWindow);
+    virtual void inputLoop(Context* pContext) = 0;
 
   protected:
     Control();
     Object3D *pObject;
     Context *pContext;
 
-    virtual void onBindWindow(GLFWwindow *pWindow);
+    virtual void bindWindow(GLFWwindow *pWindow);
+    virtual void onBindWindow(GLFWwindow *pWindow) = 0;
   };
 } // namespace SA

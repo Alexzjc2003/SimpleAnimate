@@ -35,7 +35,7 @@ namespace SA
 
 	// inline template functions to expose
 	template <typename Func>
-	inline void Context::loop( Func&& func )
+	void Context::loop( Func&& func )
 	{
 		while ( !glfwWindowShouldClose( pWindow ) )
 		{
@@ -44,6 +44,7 @@ namespace SA
 			{
 				glfwSetWindowShouldClose( pWindow , true );
 			}
+
 
 			double _time = glfwGetTime();
 			timeDelta = _time - timePrev;

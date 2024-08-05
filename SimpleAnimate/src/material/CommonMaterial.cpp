@@ -6,17 +6,20 @@ using namespace SA;
 // StaticShader CommonMaterial::shader = StaticShader("./static/commom/.vert", "./static/common/.frag");
 
 CommonMaterial::CommonMaterial(
-    const std::unordered_map<std::string, Texture *> &_maps,
-    const Color &_color)
-    : //  Material(_maps),
-      color(_color)
+	const std::unordered_map<std::string, Texture*>& _maps,
+	const Color& _color)
+	: //  Material(_maps),
+	color(_color)
 {
-  diffuseMap = getMap(_maps, "diffuse");
-  pShader = pShader ? pShader : new StaticShader("./static/shader/static/common/.vert", "./static/shader/static/common/.frag");
+	diffuseMap = getMap(_maps, "diffuse");
+	pShader = pShader ? pShader : new StaticShader("./static/shader/static/common/.vert", "./static/shader/static/common/.frag");
 }
 
 void CommonMaterial::updateUniforms()
 {
-  pShader->use()
-      .set("uDiffuse", diffuseMap->id);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(diffuseMap->target, diffuseMap->texID);
+
+	pShader->use()
+	    .set("uDiffuse", 0);
 }

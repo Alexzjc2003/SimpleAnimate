@@ -23,10 +23,10 @@ namespace SA
     GLenum type;
 
     int id;
+    GLenum target;
+    GLenum texID;
 
   protected:
-    GLenum texID;
-    GLenum target;
 
 
   private:

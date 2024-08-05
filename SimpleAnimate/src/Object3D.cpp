@@ -100,7 +100,7 @@ glm::quat Object3D::getQuaternion() const
 
 glm::vec3 Object3D::getDirection() const
 {
-  return static_cast<glm::mat3>(getQuaternion()) * glm::vec3(0, 0, 1);
+  return static_cast<glm::mat3>(getQuaternion()) * glm::vec3(0, 0, -1);
 }
 
 glm::mat4 Object3D::getModelLocal()

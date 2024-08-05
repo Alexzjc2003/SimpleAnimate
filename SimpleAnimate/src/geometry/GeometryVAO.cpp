@@ -80,7 +80,7 @@ void GeometryVAO::fromAttribs(const std::vector<Attribute> &attrs)
       glEnableVertexAttribArray(attr.type);
       glVertexAttribPointer(attr.type, attr.sz, GL_FLOAT,
                             attr.isNorm ? GL_TRUE : GL_FALSE,
-                            stride, (void *)(offset[i] * sizeof(float)));
+                            stride * sizeof(float), (void*)(offset[i] * sizeof(float)));
     }
   }
 

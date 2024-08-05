@@ -22,7 +22,7 @@ glm::mat4 Camera::getViewMatrix()
   return glm::lookAt(
       getPosition(),
       getPosition() + getDirection(),
-      glm::mat3(getModelLocal()) * glm::vec3(0, 0, 1));
+      glm::mat3(getModelLocal()) * glm::vec3(0, 1, 0));
 }
 
 glm::mat4 Camera::getProjMatrix()

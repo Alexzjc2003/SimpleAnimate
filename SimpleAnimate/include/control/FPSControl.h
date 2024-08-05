@@ -16,7 +16,10 @@ namespace SA
     virtual void mouseMoveCallback(GLFWwindow *pWindow, double x_pos, double y_pos);
     virtual void scrollCallback(GLFWwindow *pWindow, double x_offset, double y_offset);
 
-    virtual void inputLoop(GLFWwindow *pWindow);
+    virtual void inputLoop(Context *pContext);
+
+  protected:
+    virtual void bindWindow(GLFWwindow *pWindow);
 
   private:
     struct
