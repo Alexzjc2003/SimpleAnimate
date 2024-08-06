@@ -2,6 +2,8 @@
 #include <vector>
 #include <def.h>
 #include <GLFW/glfw3.h>
+#include <core/Window.h>
+#include <core/Proxy.h>
 
 namespace SA
 {
@@ -9,52 +11,46 @@ namespace SA
 	{
 	public:
 		Context();
+		void setup(GLFWwindow *window);
 		template <typename Func>
-		void loop( Func&& func );
+		void loop(Func &&func);
 		double getDelta();
 		double getTime();
 
-		GLFWwindow* getWindow() const;
+		struct _sa_context_viewport_t
+		{
+			GLint x;
+			GLint y;
+			GLsizei w;
+			GLsizei h;
+		};
+		Proxy<_sa_context_viewport_t>
+				viewport;
 
 	private:
-		int _glfw_init = GLFW_FALSE;
-
-		/* Init glfw
-		 * Feel free to call this, as this will do nothing
-		 * if glfw has been inited.
-		 */
-		void initGLFW();
-
-		GLFWwindow* pWindow;
-
-
 		double timeDelta;
 		double timePrev;
 	};
 
-
 	// inline template functions to expose
 	template <typename Func>
-	void Context::loop( Func&& func )
+	void Context::loop(Func &&func)
 	{
-		while ( !glfwWindowShouldClose( pWindow ) )
+		while (!glfwWindowShouldClose(pWindow))
 		{
-			if ( glfwGetKey( pWindow , GLFW_KEY_ESCAPE ) == GLFW_PRESS )
+			if (glfwGetKey(pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			// we explicitly check if the window should close
 			{
-				glfwSetWindowShouldClose( pWindow , true );
+				glfwSetWindowShouldClose(pWindow, true);
 			}
-
 
 			double _time = glfwGetTime();
 			timeDelta = _time - timePrev;
 			timePrev = _time;
 
-
 			func();
 
-
-			glfwSwapBuffers( pWindow );
+			glfwSwapBuffers(pWindow);
 			glfwPollEvents();
 		}
 	}
