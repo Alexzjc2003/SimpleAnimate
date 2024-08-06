@@ -15,9 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\externals\src\glad.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\camera\Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -27,16 +27,28 @@
     <ClCompile Include="src\camera\PerspecCamera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\Color.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Context.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\control\Control.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\control\FPSControl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Color.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Context.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Object3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Renderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Scene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\geometry\Attribute.cpp">
@@ -60,16 +72,7 @@
     <ClCompile Include="src\material\Material.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\pch.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Scene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\shader\Shader.cpp">
@@ -95,19 +98,37 @@
     <ClInclude Include="include\camera\PerspecCamera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\Color.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Context.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\control\Control.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\control\FPSControl.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="include\core\Color.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Context.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Object3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Proxy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Renderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="include\debug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\def.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\geometry\Attribute.h">
@@ -131,22 +152,10 @@
     <ClInclude Include="include\material\Material.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\Object3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\Renderer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\shader\Shader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\shader\ShaderUniform.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\shader\StaticShader.h">
@@ -158,14 +167,8 @@
     <ClInclude Include="include\texture\Texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\util\Logger.h">
       <Filter>头文件</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
