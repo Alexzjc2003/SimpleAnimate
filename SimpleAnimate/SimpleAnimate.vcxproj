@@ -22,6 +22,9 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\externals\src\glad.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\camera\Camera.cpp" />
     <ClCompile Include="src\camera\OrthoCamara.cpp" />
     <ClCompile Include="src\camera\PerspecCamera.cpp" />
@@ -30,6 +33,7 @@
     <ClCompile Include="src\core\Color.cpp" />
     <ClCompile Include="src\core\Context.cpp" />
     <ClCompile Include="src\core\Object3D.cpp" />
+    <ClCompile Include="src\core\Proxy.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
     <ClCompile Include="src\core\Scene.cpp" />
     <ClCompile Include="src\core\Window.cpp" />
@@ -181,6 +185,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>

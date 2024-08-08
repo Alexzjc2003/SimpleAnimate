@@ -1,21 +1,22 @@
 #pragma once
-#include <vector>
-#include <def.h>
 #include <GLFW/glfw3.h>
-#include <core/Window.h>
+#include <def.h>
 #include <core/Proxy.h>
 
 namespace SA
 {
+	class SA_API Window;
+
 	class SA_API Context
 	{
 	public:
-		Context();
-		void setup(GLFWwindow *window);
-		template <typename Func>
-		void loop(Func &&func);
-		double getDelta();
-		double getTime();
+		Context(Window* window);
+
+		Proxy<std::function<void(double)>> loop;
+		void setup();
+		
+		double getDelta() const;
+		double getTime() const;
 
 		struct _sa_context_viewport_t
 		{
@@ -25,34 +26,13 @@ namespace SA
 			GLsizei h;
 		};
 		Proxy<_sa_context_viewport_t>
-				viewport;
+			viewport;
 
 	private:
 		double timeDelta;
 		double timePrev;
+
+		Window* pWindow;
 	};
-
-	// inline template functions to expose
-	template <typename Func>
-	void Context::loop(Func &&func)
-	{
-		while (!glfwWindowShouldClose(pWindow))
-		{
-			if (glfwGetKey(pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-			// we explicitly check if the window should close
-			{
-				glfwSetWindowShouldClose(pWindow, true);
-			}
-
-			double _time = glfwGetTime();
-			timeDelta = _time - timePrev;
-			timePrev = _time;
-
-			func();
-
-			glfwSwapBuffers(pWindow);
-			glfwPollEvents();
-		}
-	}
 
 } // namespace SA

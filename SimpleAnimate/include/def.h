@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef SA_EXPORTS
 #define SA_API __declspec(dllexport)
 #else

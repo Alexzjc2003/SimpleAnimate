@@ -12,16 +12,15 @@ namespace SA
     double move_speed = 1;
     double mouse_sensitivity = 1;
 
-    virtual void keyCallback(GLFWwindow *pWindow, int key, int scancode, int action, int mods);
-    virtual void mouseMoveCallback(GLFWwindow *pWindow, double x_pos, double y_pos);
-    virtual void scrollCallback(GLFWwindow *pWindow, double x_offset, double y_offset);
+    virtual void keyCallback(int key, int scancode, int action, int mods);
+    virtual void mouseMoveCallback(double x_pos, double y_pos);
+    virtual void scrollCallback(double x_offset, double y_offset);
 
-    virtual void inputLoop(Context *pContext);
+    virtual void inputLoop(double delta);
 
   protected:
-    virtual void bindWindow(GLFWwindow *pWindow);
-
   private:
+    virtual void onBindWindow();
     struct
     {
       bool left = false;
@@ -41,7 +40,5 @@ namespace SA
       double w = 0;
       double h = 0;
     } mouse;
-
-    virtual void onBindWindow(GLFWwindow *pWindow);
   };
 }

@@ -1,21 +1,43 @@
 #include "pch.h"
 #include "core/Context.h"
+#include "core/Proxy.h"
+#include "core/Window.h"
 #include "debug.h"
 
 using namespace SA;
 
-Context::Context()
-		: viewport({0, 0, 0, 0})
+Context::Context(Window* window) :
+	pWindow(window),
+	loop(),
+	viewport({ 0, 0, 0, 0 })
 {
 	viewport.onSet = [](auto _viewport)
 	{
 		glViewport(_viewport.x, _viewport.y, _viewport.w, _viewport.h);
 	};
+
+	loop.onGet = [this]()
+	{
+		return [this](double)
+		{
+			while (pWindow->living)
+			{
+				double _time = glfwGetTime();
+				timeDelta = _time - timePrev;
+				timePrev = _time;
+
+				loop.clone()(timeDelta);
+
+				glfwSwapBuffers(pWindow->pWindow);
+				glfwPollEvents();
+			}
+		};
+	};
 }
 
-void Context::setup(GLFWwindow *pWindow)
+void Context::setup()
 {
-	glfwMakeContextCurrent(pWindow);
+	glfwMakeContextCurrent(pWindow->pWindow);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -26,5 +48,5 @@ void Context::setup(GLFWwindow *pWindow)
 	glEnableDebug();
 }
 
-double Context::getDelta() { return timeDelta; }
-double Context::getTime() { return glfwGetTime(); }
+double Context::getDelta() const { return timeDelta; }
+double Context::getTime() const { return timePrev; }

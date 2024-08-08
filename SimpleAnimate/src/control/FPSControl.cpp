@@ -1,35 +1,23 @@
 #include "pch.h"
+#include "core/Window.h"
+#include "core/Object3D.h"
 #include "control/FPSControl.h"
 
 using namespace SA;
 
 FPSControl::FPSControl() {}
 
-void FPSControl::onBindWindow(GLFWwindow* pWindow)
+void FPSControl::onBindWindow()
 {
-	int _w, _h;
-	glfwGetWindowSize(pWindow, &_w, &_h);
+	auto [_w, _h] = pWindow->size.get();
 	mouse.w = _w;
 	mouse.h = _h;
 	mouse.x = mouse.w / 2;
 	mouse.y = mouse.h / 2;
 }
 
-void FPSControl::bindWindow(GLFWwindow* pWindow)
-{
-	onBindWindow(pWindow);
-	glfwSetWindowUserPointer(pWindow, this);
-
-	glfwSetCursorPosCallback(pWindow, [](GLFWwindow* pWindow, double x_pos, double y_pos)
-	{ static_cast<FPSControl*>(glfwGetWindowUserPointer(pWindow))->mouseMoveCallback(pWindow, x_pos, y_pos); });
-	glfwSetScrollCallback(pWindow, [](GLFWwindow* pWindow, double x_offset, double y_offset)
-	{	static_cast<FPSControl*>(glfwGetWindowUserPointer(pWindow))->scrollCallback(pWindow, x_offset, y_offset); });
-	glfwSetKeyCallback(pWindow, [](GLFWwindow* pWindow, int key, int scancode, int action, int mods)
-	{	static_cast<FPSControl*>(glfwGetWindowUserPointer(pWindow))->keyCallback(pWindow, key, scancode, action, mods); });
-}
-
 void FPSControl::keyCallback(
-	GLFWwindow* pWindow, int key, int scancode, int action, int mods)
+	int key, int scancode, int action, int mods)
 {
 	auto _update = [&key, &action](bool& status, int _key)
 	{
@@ -50,7 +38,7 @@ void FPSControl::keyCallback(
 }
 
 void FPSControl::mouseMoveCallback(
-	GLFWwindow* pWindow, double x_pos, double y_pos)
+	double x_pos, double y_pos)
 {
 	double dx = x_pos - mouse.x;
 	double dy = -(y_pos - mouse.y);
@@ -76,14 +64,14 @@ void FPSControl::mouseMoveCallback(
 }
 
 void FPSControl::scrollCallback(
-	GLFWwindow* pWindow, double x_offset, double y_offset)
+	double x_offset, double y_offset)
 {
 }
 
-void FPSControl::inputLoop(Context* pContext)
+void FPSControl::inputLoop(double delta)
 {
 
-	double _d = pContext->getDelta();
+	double _d = delta;
 	double _s = _d * move_speed;
 
 	// As controls are usually applied to cameras,
@@ -101,5 +89,4 @@ void FPSControl::inputLoop(Context* pContext)
 	_m *= _s;
 
 	(*pObject).translateOnAxis(_m, 1);
-
 }
