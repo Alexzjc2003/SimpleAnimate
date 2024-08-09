@@ -19,15 +19,15 @@ namespace SA
 	{
 	public:
 		Window(
-				int _width = 1024, int _height = 768,
-				int _pos_x = 0, int _pos_y = 0,
-				std::string _title = "SimpleAnimate Window @ Alexzjc2003",
-				bool _show = true);
+			int _width = 1024, int _height = 768,
+			int _pos_x = 0, int _pos_y = 0,
+			std::string _title = "SimpleAnimate Window @ Alexzjc2003",
+			bool _show = true);
 		~Window();
 
 		friend class Context;
 
-		void bindControl(Control *control);
+		void bindControl(Control* control);
 
 		Context context;
 		std::string title;
@@ -57,13 +57,13 @@ namespace SA
 		void destroy();
 
 		static int count;
-		Control *pControl;
-		GLFWwindow *pWindow;
+		Control* pControl;
+		GLFWwindow* pWindow;
 
 		std::function<void(int, int, int, int)> keyCallback;
 		std::function<void(double, double)> scrollCallback;
 		std::function<void(double, double)> cursorPosCallback;
-		// std::function<void()> loop;
+		std::function<void(double)> loop;
 		//  std::function<void()> renderCallback;
 
 #ifndef SA_USING_PROXY
@@ -72,8 +72,8 @@ namespace SA
 #endif
 
 	private:
-		static void _glfw_key_callback(GLFWwindow *, int, int, int, int);
-		static void _glfw_scroll_callback(GLFWwindow *, double, double);
-		static void _glfw_cursor_pos_callback(GLFWwindow *, double, double);
+		static void _glfw_key_callback(GLFWwindow*, int, int, int, int);
+		static void _glfw_scroll_callback(GLFWwindow*, double, double);
+		static void _glfw_cursor_pos_callback(GLFWwindow*, double, double);
 	};
 } // namespace SA

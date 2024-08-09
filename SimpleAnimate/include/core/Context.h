@@ -20,17 +20,17 @@ namespace SA
 
 		struct _sa_context_viewport_t
 		{
-			GLint x;
-			GLint y;
-			GLsizei w;
-			GLsizei h;
+			GLint x = 0;
+			GLint y = 0;
+			GLsizei w = 0;
+			GLsizei h = 0;
 		};
 		Proxy<_sa_context_viewport_t>
 			viewport;
 
 	private:
-		double timeDelta;
-		double timePrev;
+		double timeDelta = 0;
+		double timePrev = 0;
 
 		Window* pWindow;
 	};

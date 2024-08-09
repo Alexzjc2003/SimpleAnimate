@@ -3,13 +3,13 @@
 #include "core/Proxy.h"
 #include "core/Window.h"
 #include "debug.h"
+#include "util/Logger.h"
 
 using namespace SA;
 
-Context::Context(Window* window) :
-	pWindow(window),
-	loop(),
-	viewport({ 0, 0, 0, 0 })
+Context::Context(Window *window) : pWindow(window),
+																	 loop(),
+																	 viewport({0, 0, 0, 0})
 {
 	viewport.onSet = [](auto _viewport)
 	{
@@ -26,8 +26,12 @@ Context::Context(Window* window) :
 				timeDelta = _time - timePrev;
 				timePrev = _time;
 
+				pWindow->loop(timeDelta);
+
 				loop.clone()(timeDelta);
 
+
+				logger.flush(timeDelta);
 				glfwSwapBuffers(pWindow->pWindow);
 				glfwPollEvents();
 			}

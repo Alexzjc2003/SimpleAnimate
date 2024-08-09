@@ -1,69 +1,60 @@
-#include <iostream>
+#pragma once
+
+// #include <iostream>
+#include <sstream>
 #include <iomanip>
 #include <glm/glm.hpp>
+#include <def.h>
+#include <core/Proxy.h>
 
 namespace SA
 {
-	class Logger
+	class SA_API Logger
 	{
 	public:
 		Logger() {}
 		template <typename T>
-		const Logger& log( const T val , const std::string& name = "unknown variable" ) const
+		Logger& log(const T val, const std::string& name = "unknown variable")
 		{
-			std::cout << "Unsupported type log, omit..." << std::endl;
+			//std::cout << "Unsupported type log, omit..." << std::endl;
+			_ss
+				<< name << ":" << std::endl
+				<< "Unsupported type log, omit..." << std::endl
+				<< std::endl;
 			return *this;
 		}
+
+		template <>
+		Logger& log<int>(const int, const std::string&);
+
+		template <>
+		Logger& log<float>(const float, const std::string&);
+
+		template <>
+		Logger& log<double>(const double, const std::string&);
+
+		template <>
+		Logger& log<glm::vec3>(const glm::vec3, const std::string&);
+
+		template <>
+		Logger& log<glm::mat3>(const glm::mat3, const std::string&);
+
+		template <>
+		Logger& log<glm::mat4>(const glm::mat4, const std::string&);
+
+		template <typename Tval>
+		Logger& log(const Proxy<Tval>& proxy, const std::string& name)
+		{
+			log(proxy.clone(), name);
+		}
+
+		void flush(const double delta);
+		double flush_gap = 1;
+		double flush_remain = 1;
+
+	private:
+		std::stringstream _ss;
 	};
-	template <>
-	const Logger& Logger::log<int>( const int val , const std::string& name ) const
-	{
-		std::cout << name << ":" << std::endl
-			<< val << std::endl
-			<< std::endl;
-		return *this;
-	}
-	template <>
-	const Logger& Logger::log<float>( const float val , const std::string& name ) const
-	{
-		std::cout << name << ":" << std::endl
-			<< val << std::endl
-			<< std::endl;
-		return *this;
-	}
-	template <>
-	const Logger& Logger::log<glm::vec3>( const glm::vec3 val , const std::string& name ) const
-	{
-		std::cout << name << ":" << std::endl
-			<< std::setprecision( 3 ) << std::setiosflags( std::ios::right )
-			<< "(" << std::setw( 6 ) << val[0] << "," << std::setw( 6 ) << val[1] << "," << std::setw( 6 ) << val[2] << " )" << std::endl
-			<< std::endl;
-		return *this;
-	}
-	template <>
-	const Logger& Logger::log<glm::mat3>( const glm::mat3 val , const std::string& name ) const
-	{
-		std::cout << name << ":" << std::endl
-			<< std::setprecision( 3 ) << std::setiosflags( std::ios::right )
-			<< "[(" << std::setw( 6 ) << val[0][0] << "," << std::setw( 6 ) << val[0][1] << "," << std::setw( 6 ) << val[0][2] << " )," << std::endl
-			<< " (" << std::setw( 6 ) << val[1][0] << "," << std::setw( 6 ) << val[1][1] << "," << std::setw( 6 ) << val[1][2] << " )," << std::endl
-			<< " (" << std::setw( 6 ) << val[2][0] << "," << std::setw( 6 ) << val[2][1] << "," << std::setw( 6 ) << val[2][2] << " )]" << std::endl
-			<< std::endl;
-		return *this;
-	}
-	template <>
-	const Logger& Logger::log<glm::mat4>( const glm::mat4 val , const std::string& name ) const
-	{
-		std::cout << name << ":" << std::endl
-			<< std::setprecision( 3 ) << std::setiosflags( std::ios::right )
-			<< "[(" << std::setw( 6 ) << val[0][0] << "," << std::setw( 6 ) << val[0][1] << "," << std::setw( 6 ) << val[0][2] << "," << std::setw( 6 ) << val[0][3] << " )," << std::endl
-			<< " (" << std::setw( 6 ) << val[1][0] << "," << std::setw( 6 ) << val[1][1] << "," << std::setw( 6 ) << val[1][2] << "," << std::setw( 6 ) << val[1][3] << " )," << std::endl
-			<< " (" << std::setw( 6 ) << val[2][0] << "," << std::setw( 6 ) << val[2][1] << "," << std::setw( 6 ) << val[2][2] << "," << std::setw( 6 ) << val[2][3] << " )," << std::endl
-			<< " (" << std::setw( 6 ) << val[3][0] << "," << std::setw( 6 ) << val[3][1] << "," << std::setw( 6 ) << val[3][2] << "," << std::setw( 6 ) << val[3][3] << " )]" << std::endl
-			<< std::endl;
 
-		return *this;
-	}
-
-	Logger logger{};
+	extern SA_API Logger logger;
 } // namespace SA

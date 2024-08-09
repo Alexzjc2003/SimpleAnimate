@@ -12,6 +12,8 @@ void Control::bindObject(Object3D* pObject) { this->pObject = pObject; }
 void Control::bindWindow(Window* pWindow)
 {
 	this->pWindow = pWindow;
+
+
 	pWindow->bindControl(this);
 	onBindWindow();
 }

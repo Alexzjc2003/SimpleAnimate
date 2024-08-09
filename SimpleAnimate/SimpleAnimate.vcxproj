@@ -49,6 +49,7 @@
     <ClCompile Include="src\shader\StaticShader.cpp" />
     <ClCompile Include="src\texture\ImageTexture.cpp" />
     <ClCompile Include="src\texture\Texture.cpp" />
+    <ClCompile Include="src\util\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\camera\Camera.h" />

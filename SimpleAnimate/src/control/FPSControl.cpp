@@ -2,7 +2,7 @@
 #include "core/Window.h"
 #include "core/Object3D.h"
 #include "control/FPSControl.h"
-
+#include "util/Logger.h"
 using namespace SA;
 
 FPSControl::FPSControl() {}
@@ -46,19 +46,22 @@ void FPSControl::mouseMoveCallback(
 	mouse.x = x_pos;
 	mouse.y = y_pos;
 
-	// right --> mouse.x+ --> yaw+
+	// right --> mouse.x+ --> yaw-
 	// up    --> mouse.y+ --> pitch+
 	glm::vec3 _euler = (*pObject).getEuler();
-	_euler.x += dx * mouse_sensitivity;
-	_euler.y += dy * mouse_sensitivity;
+	_euler.y -= dx * mouse_sensitivity;
+	_euler.x += dy * mouse_sensitivity;
 
+	//logger.log(_euler, "FPSControl::mouseMoveCallback()::_euler");
 	// set constraints for pitch
-	constexpr double constraint = 89.99;
-	_euler.y = _euler.y > constraint
+	constexpr double constraint = glm::pi<double>() / 2;
+	//constexpr double constraint = 3.14159265358979365 / 4;
+	//constexpr double constraint = 89.99;
+	_euler.x = _euler.x > constraint
 		? constraint
-		: _euler.y < -constraint
+		: _euler.x < -constraint
 		? -constraint
-		: _euler.y;
+		: _euler.x;
 
 	(*pObject).setEuler(_euler);
 }
@@ -70,7 +73,7 @@ void FPSControl::scrollCallback(
 
 void FPSControl::inputLoop(double delta)
 {
-
+	logger.log(delta, "FPSControl::inputLoop()::delta");
 	double _d = delta;
 	double _s = _d * move_speed;
 
@@ -85,8 +88,10 @@ void FPSControl::inputLoop(double delta)
 		move.up - move.down,
 		move.backward - move.forward);
 
+
 	// _m = glm::normalize(_m);
 	_m *= _s;
+	logger.log(_m, "FPSControl::inputLoop()::_m");
 
 	(*pObject).translateOnAxis(_m, 1);
 }

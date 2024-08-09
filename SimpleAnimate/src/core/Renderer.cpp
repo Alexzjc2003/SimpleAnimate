@@ -34,7 +34,9 @@ void Renderer::renderObject(Object3D& object, Camera& camera) const
 		.set("uView", camera.getViewMatrix())
 		.set("uProj", camera.getProjMatrix());
 
-	logger.log(camera.getProjMatrix() * camera.getViewMatrix() * object.getModelWorld(), "MVP");
+	//logger.log(object.getModelWorld(), "Mat M");
+	logger.log(camera.getViewMatrix(), "Mat V");
+	//logger.log(camera.getProjMatrix() * camera.getViewMatrix() * object.getModelWorld(), "MVP");
 
 	// 3. set material uniforms
 	object.pMaterial->updateUniforms();

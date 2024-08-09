@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "camera/Camera.h"
-
+#include "util/Logger.h"
 using namespace SA;
 
 Camera::Camera()
@@ -19,6 +19,9 @@ Camera::Camera(float _top, float _bottom, float _left, float _right, float _near
 
 glm::mat4 Camera::getViewMatrix()
 {
+  //logger.log(getPosition(),"pos");
+  //logger.log(getDirection(),"dir");
+
   return glm::lookAt(
       getPosition(),
       getPosition() + getDirection(),
@@ -27,7 +30,7 @@ glm::mat4 Camera::getViewMatrix()
 
 glm::mat4 Camera::getProjMatrix()
 {
-  // Todo: implementing projection matrix for any
+  // projection matrix for any
   // camera based on frustum
   return glm::frustum(
       frustum.left, frustum.right,
