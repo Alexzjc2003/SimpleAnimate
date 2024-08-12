@@ -5,140 +5,140 @@ using namespace SA;
 
 static std::vector<float> _box_pos
 {
-	// back face
+	// back face		// negativeZ
 	-0.5f, -0.5f, -0.5f,  // bottom-left
 	 0.5f,  0.5f, -0.5f,  // top-right
 	 0.5f, -0.5f, -0.5f,  // bottom-right
 	 0.5f,  0.5f, -0.5f,  // top-right
 	-0.5f, -0.5f, -0.5f,  // bottom-left
 	-0.5f,  0.5f, -0.5f,  // top-left
-	// front face
+	// front face		// positiveZ
 	-0.5f, -0.5f,  0.5f,  // bottom-left
 	 0.5f, -0.5f,  0.5f,  // bottom-right
 	 0.5f,  0.5f,  0.5f,  // top-right
 	 0.5f,  0.5f,  0.5f,  // top-right
 	-0.5f,  0.5f,  0.5f,  // top-left
 	-0.5f, -0.5f,  0.5f,  // bottom-left
-	// left face
-	-0.5f,  0.5f,  0.5f,  // top-right
-	-0.5f,  0.5f, -0.5f,  // top-left
-	-0.5f, -0.5f, -0.5f,  // bottom-left
-	-0.5f, -0.5f, -0.5f,  // bottom-left
-	-0.5f, -0.5f,  0.5f,  // bottom-right
-	-0.5f,  0.5f,  0.5f,  // top-right
-	// right face
-	 0.5f,  0.5f,  0.5f,  // top-left
-	 0.5f, -0.5f, -0.5f,  // bottom-right
-	 0.5f,  0.5f, -0.5f,  // top-right
-	 0.5f, -0.5f, -0.5f,  // bottom-right
-	 0.5f,  0.5f,  0.5f,  // top-left
-	 0.5f, -0.5f,  0.5f,  // bottom-left
-	// bottom face
-	-0.5f, -0.5f, -0.5f,  // top-right
-	 0.5f, -0.5f, -0.5f,  // top-left
-	 0.5f, -0.5f,  0.5f,  // bottom-left
-	 0.5f, -0.5f,  0.5f,  // bottom-left
-	-0.5f, -0.5f,  0.5f,  // bottom-right
-	-0.5f, -0.5f, -0.5f,  // top-right
-	// top face
-	-0.5f,  0.5f, -0.5f,  // top-left
-	 0.5f,  0.5f,  0.5f,  // bottom-right
-	 0.5f,  0.5f, -0.5f,  // top-right
-	 0.5f,  0.5f,  0.5f,  // bottom-right
-	-0.5f,  0.5f, -0.5f,  // top-left
-	-0.5f,  0.5f,  0.5f,  // bottom-left
+	// left face		// negativeX
+	-0.5f,  0.5f,  0.5f,  // top-front
+	-0.5f,  0.5f, -0.5f,  // top-back
+	-0.5f, -0.5f, -0.5f,  // bottom-back
+	-0.5f, -0.5f, -0.5f,  // bottom-back
+	-0.5f, -0.5f,  0.5f,  // bottom-front
+	-0.5f,  0.5f,  0.5f,  // top-front
+	// right face		// positiveX
+	 0.5f,  0.5f,  0.5f,  // top-front
+	 0.5f, -0.5f, -0.5f,  // bottom-back
+	 0.5f,  0.5f, -0.5f,  // top-back
+	 0.5f, -0.5f, -0.5f,  // bottom-back
+	 0.5f,  0.5f,  0.5f,  // top-front
+	 0.5f, -0.5f,  0.5f,  // bottom-front
+	// bottom face	// negativeY
+	-0.5f, -0.5f, -0.5f,  // back-left
+	 0.5f, -0.5f, -0.5f,  // back-right
+	 0.5f, -0.5f,  0.5f,  // front-right
+	 0.5f, -0.5f,  0.5f,  // front-right
+	-0.5f, -0.5f,  0.5f,  // front-left
+	-0.5f, -0.5f, -0.5f,  // back-left
+	// top face			// positiveY
+	-0.5f,  0.5f, -0.5f,  // back-left
+	 0.5f,  0.5f,  0.5f,  // front-right
+	 0.5f,  0.5f, -0.5f,  // back-right
+	 0.5f,  0.5f,  0.5f,  // front-right
+	-0.5f,  0.5f, -0.5f,  // back-left
+	-0.5f,  0.5f,  0.5f,  // front-left
 };
 
 static std::vector<float> _box_normal
 {
 	// back face
-	 0.0f,  0.0f, -1.0f,  // bottom-left
-	 0.0f,  0.0f, -1.0f,  // top-right
-	 0.0f,  0.0f, -1.0f,  // bottom-right
-	 0.0f,  0.0f, -1.0f,  // top-right
-	 0.0f,  0.0f, -1.0f,  // bottom-left
-	 0.0f,  0.0f, -1.0f,  // top-left
+	 0.0f,  0.0f, -1.0f,  
+	 0.0f,  0.0f, -1.0f,  
+	 0.0f,  0.0f, -1.0f,  
+	 0.0f,  0.0f, -1.0f,  
+	 0.0f,  0.0f, -1.0f,  
+	 0.0f,  0.0f, -1.0f,  
 	// front face
-	 0.0f,  0.0f,  1.0f,  // bottom-left
-	 0.0f,  0.0f,  1.0f,  // bottom-right
-	 0.0f,  0.0f,  1.0f,  // top-right
-	 0.0f,  0.0f,  1.0f,  // top-right
-	 0.0f,  0.0f,  1.0f,  // top-left
-	 0.0f,  0.0f,  1.0f,  // bottom-left
+	 0.0f,  0.0f,  1.0f,  
+	 0.0f,  0.0f,  1.0f,  
+	 0.0f,  0.0f,  1.0f,  
+	 0.0f,  0.0f,  1.0f,  
+	 0.0f,  0.0f,  1.0f,  
+	 0.0f,  0.0f,  1.0f,  
 	// left face
-	-1.0f,  0.0f,  0.0f,  // top-right
-	-1.0f,  0.0f,  0.0f,  // top-left
-	-1.0f,  0.0f,  0.0f,  // bottom-left
-	-1.0f,  0.0f,  0.0f,  // bottom-left
-	-1.0f,  0.0f,  0.0f,  // bottom-right
-	-1.0f,  0.0f,  0.0f,  // top-right
+	-1.0f,  0.0f,  0.0f,  
+	-1.0f,  0.0f,  0.0f,  
+	-1.0f,  0.0f,  0.0f,  
+	-1.0f,  0.0f,  0.0f,  
+	-1.0f,  0.0f,  0.0f,  
+	-1.0f,  0.0f,  0.0f,  
 	// right face
-	 1.0f,  0.0f,  0.0f,  // top-left
-	 1.0f,  0.0f,  0.0f,  // bottom-right
-	 1.0f,  0.0f,  0.0f,  // top-right
-	 1.0f,  0.0f,  0.0f,  // bottom-right
-	 1.0f,  0.0f,  0.0f,  // top-left
-	 1.0f,  0.0f,  0.0f,  // bottom-left
+	 1.0f,  0.0f,  0.0f,  
+	 1.0f,  0.0f,  0.0f,  
+	 1.0f,  0.0f,  0.0f,  
+	 1.0f,  0.0f,  0.0f,  
+	 1.0f,  0.0f,  0.0f,  
+	 1.0f,  0.0f,  0.0f,  
 	// bottom face
-	 0.0f, -1.0f,  0.0f,  // top-right
-	 0.0f, -1.0f,  0.0f,  // top-left
-	 0.0f, -1.0f,  0.0f,  // bottom-left
-	 0.0f, -1.0f,  0.0f,  // bottom-left
-	 0.0f, -1.0f,  0.0f,  // bottom-right
-	 0.0f, -1.0f,  0.0f,  // top-right
+	 0.0f, -1.0f,  0.0f,  
+	 0.0f, -1.0f,  0.0f,  
+	 0.0f, -1.0f,  0.0f,  
+	 0.0f, -1.0f,  0.0f,  
+	 0.0f, -1.0f,  0.0f,  
+	 0.0f, -1.0f,  0.0f,  
 	// top face
-	 0.0f,  1.0f,  0.0f,  // top-left
-	 0.0f,  1.0f,  0.0f,  // bottom-right
-	 0.0f,  1.0f,  0.0f,  // top-right
-	 0.0f,  1.0f,  0.0f,  // bottom-right
-	 0.0f,  1.0f,  0.0f,  // top-left
-	 0.0f,  1.0f,  0.0f,  // bottom-left
+	 0.0f,  1.0f,  0.0f,  
+	 0.0f,  1.0f,  0.0f,  
+	 0.0f,  1.0f,  0.0f,  
+	 0.0f,  1.0f,  0.0f,  
+	 0.0f,  1.0f,  0.0f,  
+	 0.0f,  1.0f,  0.0f,  
 };
 
 static std::vector<float> _box_uv 
 {
 	// back face
-	0.0f, 0.0f, // bottom-left
-	1.0f, 1.0f, // top-right
-	1.0f, 0.0f, // bottom-right
-	1.0f, 1.0f, // top-right
-	0.0f, 0.0f, // bottom-left
-	0.0f, 1.0f, // top-left
+	1.0f, 0.0f, // bottom-left
+	0.0f, 1.0f, // top-right
+	0.0f, 0.0f, // bottom-right
+	0.0f, 1.0f, // top-right
+	1.0f, 0.0f, // bottom-left
+	1.0f, 1.0f, // top-left
 	// front face
-	1.0f, 0.0f, // bottom-left
-	0.0f, 0.0f, // bottom-right
-	0.0f, 1.0f, // top-right
-	0.0f, 1.0f, // top-right
-	1.0f, 1.0f, // top-left
-	1.0f, 0.0f, // bottom-left
+	0.0f, 0.0f, // bottom-left
+	1.0f, 0.0f, // bottom-right
+	1.0f, 1.0f, // top-right
+	1.0f, 1.0f, // top-right
+	0.0f, 1.0f, // top-left
+	0.0f, 0.0f, // bottom-left
 	// left face
-	1.0f, 1.0f, // top-right
-	1.0f, 0.0f, // top-left
-	0.0f, 0.0f, // bottom-left
-	0.0f, 0.0f, // bottom-left
-	0.0f, 1.0f, // bottom-right
-	1.0f, 1.0f, // top-right
+	1.0f, 1.0f, // top-front
+	0.0f, 1.0f, // top-back
+	0.0f, 0.0f, // bottom-back
+	0.0f, 0.0f, // bottom-back
+	1.0f, 0.0f, // bottom-front
+	1.0f, 1.0f, // top-front
 	// right face
-	0.0f, 1.0f, // top-left
-	0.0f, 0.0f, // bottom-right
-	1.0f, 0.0f, // top-right
-	1.0f, 0.0f, // bottom-right
-	1.0f, 1.0f, // top-left
-	0.0f, 1.0f, // bottom-left
+	0.0f, 1.0f, // top-front
+	1.0f, 0.0f, // bottom-back
+	1.0f, 1.0f, // top-back
+	1.0f, 0.0f, // bottom-back
+	0.0f, 1.0f, // top-front
+	0.0f, 0.0f, // bottom-front
 	// bottom face
-	0.0f, 0.0f, // top-right
-	1.0f, 0.0f, // top-left
-	1.0f, 1.0f, // bottom-left
-	1.0f, 1.0f, // bottom-left
-	0.0f, 1.0f, // bottom-right
-	0.0f, 0.0f, // top-right
+	1.0f, 0.0f, // back-left
+	0.0f, 0.0f, // back-right
+	0.0f, 1.0f, // front-right
+	0.0f, 1.0f, // front-right
+	1.0f, 1.0f, // front-left
+	1.0f, 0.0f, // back-left
 	// top face
-	0.0f, 1.0f, // top-left
-	1.0f, 0.0f, // bottom-right
-	1.0f, 1.0f, // top-right
-	1.0f, 0.0f, // bottom-right
-	0.0f, 1.0f, // top-left
-	0.0f, 0.0f  // bottom-left
+	1.0f, 0.0f, // back-left
+	0.0f, 1.0f, // front-right
+	0.0f, 0.0f, // back-right
+	0.0f, 1.0f, // front-right
+	1.0f, 0.0f, // back-left
+	1.0f, 1.0f  // front-left
 };
 
 static std::vector<float> _box_tangent
@@ -187,6 +187,7 @@ static std::vector<float> _box_tangent
 	 1.0f,  0.0f,  0.0f,  // bottom-left
 };
 
+// FIXME: fix the directions and comments
 static std::vector<float> _box_bitangent
 {
   // back face
