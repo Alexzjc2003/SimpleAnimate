@@ -19,8 +19,8 @@ Camera::Camera(float _top, float _bottom, float _left, float _right, float _near
 
 glm::mat4 Camera::getViewMatrix()
 {
-  //logger.log(getPosition(),"pos");
-  //logger.log(getDirection(),"dir");
+  logger.log(getPosition(),"pos");
+  logger.log(getDirection(),"dir");
 
   return glm::lookAt(
       getPosition(),

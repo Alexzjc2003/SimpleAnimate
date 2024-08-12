@@ -6,6 +6,7 @@
 using namespace SA;
 
 int Object3D::nextId = 1;
+const glm::vec3 Object3D::default_direction(0, 0, -1);
 
 Object3D::Object3D() : pGeometry(nullptr),
 pMaterial(nullptr),
@@ -75,7 +76,7 @@ Object3D& Object3D::translateOnAxis(const glm::vec3& _axis, const float _dist)
 
 Object3D& Object3D::rotateOnAxis(const glm::vec3& _axis, const float _radians)
 {
-	return setQuaternion(getQuaternion() *= glm::angleAxis(_radians, glm::normalize(_axis)));
+	return setQuaternion(getQuaternion() * glm::angleAxis(_radians, glm::normalize(_axis)));
 }
 
 glm::vec3 Object3D::getPosition() const
@@ -100,7 +101,7 @@ glm::quat Object3D::getQuaternion() const
 
 glm::vec3 Object3D::getDirection() const
 {
-	return static_cast<glm::mat3>(getQuaternion()) * glm::vec3(0, 0, -1);
+	return static_cast<glm::mat3>(getQuaternion()) * default_direction;
 }
 
 glm::mat4 Object3D::getModelLocal()
@@ -185,6 +186,8 @@ iterator& iterator::operator++()
 	while (pObj != pRoot)
 	{
 		auto p = pObj->parent;
+		// FIXME: may be problematic, as complier hints that
+		// it can't deduce the type (auto it)
 		auto it = ++(p->children.find(pObj->id));
 		if (it == p->children.end())
 		{

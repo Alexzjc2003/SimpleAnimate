@@ -9,18 +9,20 @@ using namespace SA;
 int Window::count = 0;
 
 Window::Window(
-	int _width, int _height,
-	int _pos_x, int _pos_y,
-	std::string _title,
-	bool _show)
-	: title(_title),
-	size({ _width, _height }),
-	pos({ _pos_x, _pos_y }),
-	show(_show),
-	living(true),
-	context(this),
-	pWindow(nullptr),
-	pControl(nullptr)
+		int _width, int _height,
+		int _pos_x, int _pos_y,
+		std::string _title,
+		bool _show)
+		: title(_title),
+			size({_width, _height}),
+			pos({_pos_x, _pos_y}),
+			cursorPos({0, 0}),
+			cursorShow(true),
+			show(_show),
+			living(true),
+			context(this),
+			pWindow(nullptr),
+			pControl(nullptr)
 {
 	// init glfw if necessary
 	if (!count)
@@ -31,6 +33,7 @@ Window::Window(
 	create();
 
 #ifdef SA_USING_PROXY
+	// setters
 	pos.onSet = [this](auto _pos)
 	{ glfwSetWindowPos(this->pWindow, _pos.x, _pos.y); this->pos.copy(_pos); };
 	size.onSet = [this](auto _size)
@@ -60,19 +63,25 @@ Window::Window(
 			this->destroy();
 		}
 	};
+	// cursorPos.onSet = [this](auto _cursor_pos)
+	// {
+	// 	glfwSetCursorPos(pWindow, _cursor_pos.x, _cursor_pos.y);
+	// };
+	cursorShow.onSet = [this](auto _cursor_show)
+	{
+		glfwSetInputMode(pWindow, GLFW_CURSOR, _cursor_show ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
+		cursorShow.copy(_cursor_show);
+	};
 
+	// getters
 	pos.onGet = [this]()
 	{
-		int x, y;
-		glfwGetWindowPos(this->pWindow, &x, &y);
-		this->pos.copy({ x, y });
+		glfwGetWindowPos(this->pWindow, &(pos->x), &(pos->y));
 		return pos.clone();
 	};
 	size.onGet = [this]()
 	{
-		int w, h;
-		glfwGetWindowSize(this->pWindow, &w, &h);
-		this->size.copy({ w, h });
+		glfwGetWindowSize(this->pWindow, &(size->width), &(size->height));
 		return size.clone();
 	};
 	living.onGet = [this]()
@@ -80,12 +89,17 @@ Window::Window(
 		this->living.copy(!glfwWindowShouldClose(this->pWindow));
 		return living.clone();
 	};
+	cursorPos.onGet = [this]()
+	{
+		glfwGetCursorPos(pWindow, &(cursorPos->x), &(cursorPos->y));
+		return cursorPos.clone();
+	};
 
 #else
-	glfwSetWindowPosCallback(pWindow, [this](GLFWwindow* pWindow, int _x, int _y)
-	{ this->pos.x = _x; this->pos.y = _y; });
-	glfwSetWindowSizeCallback(pWindow, [this](GLFWwindow* pWindow, int _w, int _h)
-	{ this->size.width = _w; this->size.height = _h; });
+	glfwSetWindowPosCallback(pWindow, [this](GLFWwindow *pWindow, int _x, int _y)
+													 { this->pos.x = _x; this->pos.y = _y; });
+	glfwSetWindowSizeCallback(pWindow, [this](GLFWwindow *pWindow, int _w, int _h)
+														{ this->size.width = _w; this->size.height = _h; });
 #endif
 
 	// setup callback functions
@@ -131,7 +145,7 @@ void Window::moveTo(int _pos_x, int _pos_y)
 }
 #endif
 
-void Window::bindControl(Control* control)
+void Window::bindControl(Control *control)
 {
 	pControl = control;
 }
@@ -158,7 +172,7 @@ void Window::create()
 	context.setup();
 	int _w, _h;
 	glfwGetFramebufferSize(pWindow, &_w, &_h);
-	context.viewport = { 0, 0, _w, _h };
+	context.viewport = {0, 0, _w, _h};
 }
 
 void Window::destroy()
@@ -170,23 +184,23 @@ void Window::destroy()
 }
 
 // raw glfw form callbacks
-void Window::_glfw_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Window::_glfw_key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-	Window* pWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
+	Window *pWindow = static_cast<Window *>(glfwGetWindowUserPointer(window));
 	if (pWindow && pWindow->keyCallback)
 		pWindow->keyCallback(key, scancode, action, mods);
 }
 
-void Window::_glfw_scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+void Window::_glfw_scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 {
-	Window* pWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
+	Window *pWindow = static_cast<Window *>(glfwGetWindowUserPointer(window));
 	if (pWindow && pWindow->scrollCallback)
 		pWindow->scrollCallback(xoffset, yoffset);
 }
 
-void Window::_glfw_cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
+void Window::_glfw_cursor_pos_callback(GLFWwindow *window, double xpos, double ypos)
 {
-	Window* pWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
+	Window *pWindow = static_cast<Window *>(glfwGetWindowUserPointer(window));
 	if (pWindow && pWindow->cursorPosCallback)
 		pWindow->cursorPosCallback(xpos, ypos);
 }

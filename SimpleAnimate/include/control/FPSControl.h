@@ -10,6 +10,7 @@ namespace SA
     FPSControl();
 
     double move_speed = 1;
+    double fly_speed = 0.8;
     double mouse_sensitivity = 1;
 
     virtual void keyCallback(int key, int scancode, int action, int mods);
@@ -30,8 +31,6 @@ namespace SA
       bool up = false;
       bool down = false;
 
-      double pitch = 0;
-      double yaw = 0;
     } move;
     struct
     {
@@ -39,6 +38,9 @@ namespace SA
       double y = 0;
       double w = 0;
       double h = 0;
+      // bool init = false;
     } mouse;
+
+    // bool show_cursor = false;
   };
 }

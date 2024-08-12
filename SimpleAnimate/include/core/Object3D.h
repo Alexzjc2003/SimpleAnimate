@@ -16,6 +16,8 @@ namespace SA
   public:
     Object3D(Geometry *geometry, Material *material);
 
+    static const glm::vec3 default_direction;
+
     // setters
     // all setters return the reference to the instance
     // for chain calling
@@ -65,7 +67,6 @@ namespace SA
 
     protected:
     private:
-      // std::list<pointer_type> _lst;
       pointer_type pRoot;
       pointer_type pObj;
     };

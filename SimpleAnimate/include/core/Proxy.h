@@ -22,7 +22,7 @@ namespace SA
 		std::function<void(const Tval val)> onSet;
 
 		void operator=(const Tval val);
-		Tval& operator->();
+		Tval* operator->();
 		bool operator==(const Tval val);
 		template <typename Tval2>
 		bool operator==(const Proxy<Tval2> proxy2);
@@ -82,10 +82,10 @@ namespace SA
 	}
 
 	template <typename Tval>
-	Tval&
+	Tval*
 		Proxy<Tval>::operator->()
 	{
-		return _val;
+		return &_val;
 	}
 
 	template <typename Tval>

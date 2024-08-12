@@ -12,7 +12,7 @@ This class is the base for almost every 3D objects in SimpleAnimate. (including 
 
 To describe an Object3D, these variables are needed:
 
-#### position
+#### Position
 
 ```cpp
 private:
@@ -35,8 +35,9 @@ public:
 	Object3D& setQuaternion(const glm::quat& _quat);
 
 	glm::vec3 getDirection() const;
+	static const glm::vec3 default_direction // (0, 0, -1)
 ```
 
-Calling setEuler or setQuaternion will update both **euler** and **quaternion**, so you can get the newest **euler** or **quaternion** by calling getXxx, no matter which set you called before.
+Calling *setEuler* or *setQuaternion* will update both **euler** and **quaternion**, so you can get the newest **euler** or **quaternion** by calling *getXxx*, no matter which set you called before.
 
-Calling getDirection will return you a glm::vec3 in local space representing the facing direction of an Object3D. The facing direction of an Object3D will initially be **(0, 0, -1)** or **negativeZ** in its local space if you don't set its **euler** or **quaternion**.
+Calling *getDirection* will return you a glm::vec3 in local space representing the facing direction of an Object3D. The facing direction of an Object3D will initially be **(0, 0, -1)** or **default_direction** (negativeZ) in its local space if you don't set its **euler** or **quaternion**.

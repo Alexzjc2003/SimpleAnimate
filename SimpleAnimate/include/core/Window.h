@@ -41,11 +41,19 @@ namespace SA
 			int x;
 			int y;
 		};
+		struct _sa_window_cursor_pos_t
+		{
+			double x;
+			double y;
+		};
+
 #ifdef SA_USING_PROXY
 		Proxy<_sa_window_size_t> size;
 		Proxy<_sa_window_pos_t> pos;
+		Proxy<_sa_window_cursor_pos_t> cursorPos;
 		Proxy<bool> show;
 		Proxy<bool> living;
+		Proxy<bool> cursorShow;
 #else
 		bool show;
 		void resize(int _width, int _height);
