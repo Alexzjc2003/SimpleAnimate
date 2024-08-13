@@ -196,7 +196,8 @@
       <AdditionalDependencies>glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y $(TargetPath) $(TargetDir)..\..\..\..\SimpleAnimateExample\SimpleAnimateExample\SimpleAnimate.dll</Command>
+      <Command>xcopy /Y $(TargetDir)SimpleAnimate.lib $(ProjectDir)asset\SimpleAnimate.lib
+xcopy /Y $(TargetDir)SimpleAnimate.dll $(ProjectDir)asset\SimpleAnimate.dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
