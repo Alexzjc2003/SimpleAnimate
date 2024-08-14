@@ -6,7 +6,6 @@
 using namespace SA;
 
 int Object3D::nextId = 1;
-const glm::vec3 Object3D::default_direction(0, 0, -1);
 
 Object3D::Object3D() : pGeometry(nullptr),
 pMaterial(nullptr),
@@ -36,6 +35,13 @@ Object3D& Object3D::setPosition(const glm::vec3& _pos)
 	_model_needs_update = true;
 
 	return *this;
+}
+
+Object3D& Object3D::setDirection(const glm::vec3& _front, const glm::vec3& _up)
+{
+	// glm::quatLookAtRH returns a quaternion which transforms
+	// (0, 0, -1) to the desired direction(_front)
+	return setQuaternion(glm::quatLookAtRH(_front, _up));
 }
 
 Object3D& Object3D::setScale(const glm::vec3& _scale)
@@ -101,7 +107,7 @@ glm::quat Object3D::getQuaternion() const
 
 glm::vec3 Object3D::getDirection() const
 {
-	return static_cast<glm::mat3>(getQuaternion()) * default_direction;
+	return static_cast<glm::mat3>(getQuaternion()) * default_front;
 }
 
 glm::mat4 Object3D::getModelLocal()
