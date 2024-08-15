@@ -1,0 +1,24 @@
+#pragma once
+#include "def.h"
+#include "core/Object3D.h"
+#include "core/Color.h"
+
+namespace SA
+{
+  class SA_API Light : public Object3D
+  {
+  public:
+    Light(const Color &_color = 0xffffff,
+          const glm::vec3 &_atten = glm::vec3(1.0, 0.0, 0.0));
+    Light(const glm::mat3 &_ads =
+              glm::mat3(glm::vec3(0.0), glm::vec3(1.0), glm::vec3(0.0)),
+          const glm::vec3 &_atten = glm::vec3(1.0, 0.0, 0.0));
+
+    glm::vec3 atten;
+    glm::mat3 ads;
+
+    glm::vec3 &ambient = ads[0];
+    glm::vec3 &diffuse = ads[1];
+    glm::vec3 &specular = ads[2];
+  };
+} // namespace SA
