@@ -16,7 +16,7 @@ namespace SA
     void activate() const;
     void deactivate() const;
 
-  private:
     GLuint ubo;
+  private:
   };
 } // namespace SA

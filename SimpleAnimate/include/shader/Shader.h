@@ -2,6 +2,7 @@
 
 #include <def.h>
 #include <glad/glad.h>
+#include <shader/UBO.h>
 
 namespace SA
 {
@@ -11,6 +12,8 @@ namespace SA
     const Shader &use() const;
     template <typename T>
     const Shader &set(const std::string &uName, const T &value) const;
+    const Shader &bindUBO(const std::string &uName, const UBO &ubo) const;
+
 
   protected:
     Shader();

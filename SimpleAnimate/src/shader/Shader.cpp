@@ -132,3 +132,10 @@ const Shader &Shader::set<glm::vec2>(const std::string &uName, const glm::vec2 &
   glUniform3fv(uloc, 1, glm::value_ptr(value));
   return *this;
 }
+
+const Shader &Shader::bindUBO(const std::string &uName, const UBO &ubo) const
+{
+  auto idx = glGetUniformBlockIndex(this->id, uName.c_str());
+  glUniformBlockBinding(this->id, idx, ubo.ubo);
+  return *this;
+}
