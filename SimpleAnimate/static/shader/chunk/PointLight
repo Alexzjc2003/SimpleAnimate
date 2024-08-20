@@ -1,0 +1,4 @@
+layout (std140) uniform PointLight_{} 
+{{
+  PointLight light;
+}};

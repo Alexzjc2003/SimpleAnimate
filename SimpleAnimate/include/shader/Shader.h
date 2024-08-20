@@ -17,8 +17,9 @@ namespace SA
 
     GLuint id;
 
-    GLuint create_shader_from_strings(const char **str, GLsizei num, GLenum type);
-    GLuint create_shader_from_file(const char *path, GLenum type);
+    GLuint load_from_strings(const char **str, GLsizei num, GLenum type);
+    GLuint load_from_file(const char *path, GLenum type);
     void link();
+    void compile(GLuint sid);
   };
 } // namespace SA

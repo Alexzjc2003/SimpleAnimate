@@ -14,28 +14,16 @@ const Shader &Shader::use() const
   return *this;
 }
 
-GLuint Shader::create_shader_from_strings(const char **str, GLsizei num, GLenum type)
+GLuint Shader::load_from_strings(const char **str, GLsizei num, GLenum type)
 {
-  GLuint _sid;
-  int success;
-  char info[512];
 
   _sid = glCreateShader(type);
   glShaderSource(_sid, num, str, NULL);
-  glCompileShader(_sid);
-
-  glGetShaderiv(_sid, GL_COMPILE_STATUS, &success);
-  if (!success)
-  {
-    glGetShaderInfoLog(_sid, 512, NULL, info);
-    std::cerr << "Shader::create_shader_from_strings: Fail to create shader" << std::endl
-              << info << std::endl;
-  }
 
   return _sid;
 }
 
-GLuint Shader::create_shader_from_file(const char *path, GLenum type)
+GLuint Shader::load_from_file(const char *path, GLenum type)
 {
   try
   {
@@ -47,12 +35,12 @@ GLuint Shader::create_shader_from_file(const char *path, GLenum type)
     ss_shader << ifs_shader.rdbuf();
 
     std::string _s = ss_shader.str();
-    const char* _c = _s.c_str();
-    return create_shader_from_strings(&_c, 1, type);
+    const char *_c = _s.c_str();
+    return load_from_strings(&_c, 1, type);
   }
   catch (const std::exception &e)
   {
-    std::cerr << "Shader::create_shader_from_file: Fail to load file" << std::endl
+    std::cerr << "Shader::load_from_file: Fail to load file" << std::endl
               << e.what() << std::endl;
     return 0;
   }
@@ -71,6 +59,22 @@ void Shader::link()
   {
     glGetProgramInfoLog(id, 512, NULL, info);
     std::cerr << "Shader::link: Fail to link program" << std::endl
+              << info << std::endl;
+  }
+}
+
+void Shader::compile(GLuint sid)
+{
+  int success;
+  char info[512];
+
+  glCompileShader(sid);
+
+  glGetShaderiv(sid, GL_COMPILE_STATUS, &success);
+  if (!success)
+  {
+    glGetShaderInfoLog(sid, 512, NULL, info);
+    std::cerr << "Shader::load_from_strings: Fail to create shader" << std::endl
               << info << std::endl;
   }
 }
