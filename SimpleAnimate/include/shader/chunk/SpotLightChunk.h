@@ -9,18 +9,18 @@
 
 namespace SA
 {
-  class SA_API PointLightChunk : public ShaderChunk
+  class SA_API SpotLightChunk : public ShaderChunk
   {
   public:
-    PointLightChunk(const int &index) : ShaderChunk(path)
+    SpotLightChunk(const int &index) : ShaderChunk(path)
     {
-      name = std::format("/PointLight_{}", index);
+      name = std::format("/SpotLight_{}", index);
       std::string content = std::format(files[path], index);
       glNamedStringARB(GL_SHADER_INCLUDE_ARB,
                        name.length(), name.c_str(),
                        content.length(), content.c_str());
     }
-    ~PointLightChunk()
+    ~SpotLightChunk()
     {
       glDeleteNamedStringARB(name.length(), name.c_str());
     }
@@ -29,6 +29,6 @@ namespace SA
     static const std::string path;
   };
 
-  const std::string PointLightChunk::path = "./static/shader/chunk/PointLight";
+  const std::string SpotLightChunk::path = "./static/shader/chunk/SpotLight";
 
 } // namespace SA

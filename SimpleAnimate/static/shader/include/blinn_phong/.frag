@@ -76,6 +76,7 @@ uniform int SpotLightCount;
 uniform sampler2D diffuseMap;
 // uniform sampler2D normalMap;
 uniform sampler2D specularMap;
+uniform float shininess;
 
 in BlinnPhong {
   vec3 pos_frag;
@@ -105,7 +106,7 @@ vec3 CalcPointLight(PointLight light, vec2 uv, vec3 normal, vec3 viewDir) {
   vec3 lightDir = normalize(light.position - fs_in.pos_frag);
   vec3 color = CalcAmbient(texture2D(diffuseMap, uv).rgb) +
     CalcDiffuse(texture2D(diffuseMap, uv).rgb, normal, lightDir) +
-    CalcSpecular(texture2D(specularMap, uv).rgb, normal, lightDir, viewDir, 32.0);
+    CalcSpecular(texture2D(specularMap, uv).rgb, normal, lightDir, viewDir, shininess);
   return color * CalcAttenuation(distance(fs_in.pos_frag, light.position), light.atten);
 }
 
@@ -113,7 +114,7 @@ vec3 CalcDirectionalLight(DirectionalLight light, vec2 uv, vec3 normal, vec3 vie
   vec3 lightDir = normalize(-light.direction);
   vec3 color = CalcAmbient(texture2D(diffuseMap, uv).rgb) +
     CalcDiffuse(texture2D(diffuseMap, uv).rgb, normal, lightDir) +
-    CalcSpecular(texture2D(specularMap, uv).rgb, normal, lightDir, viewDir, 32.0);
+    CalcSpecular(texture2D(specularMap, uv).rgb, normal, lightDir, viewDir, shininess);
   return color;
 }
 
@@ -125,7 +126,7 @@ vec3 CalcSpotLight(SpotLight light, vec2 uv, vec3 normal, vec3 viewDir) {
   if(intensity > 0.0) {
     vec3 color = CalcAmbient(texture2D(diffuseMap, uv).rgb) +
       CalcDiffuse(texture2D(diffuseMap, uv).rgb, normal, lightDir) +
-      CalcSpecular(texture2D(specularMap, uv).rgb, normal, lightDir, viewDir, 32.0);
+      CalcSpecular(texture2D(specularMap, uv).rgb, normal, lightDir, viewDir, shininess);
     return color * intensity * CalcAttenuation(distance(fs_in.pos_frag, light.position), light.atten);
   } else {
     return CalcAmbient(texture2D(diffuseMap, uv).rgb);

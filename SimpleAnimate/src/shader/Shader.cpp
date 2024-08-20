@@ -16,7 +16,7 @@ const Shader &Shader::use() const
 
 GLuint Shader::load_from_strings(const char **str, GLsizei num, GLenum type)
 {
-
+  GLuint _sid;
   _sid = glCreateShader(type);
   glShaderSource(_sid, num, str, NULL);
 

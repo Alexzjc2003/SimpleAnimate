@@ -9,8 +9,8 @@ IncludeShader::IncludeShader(
 {
   // process chunks
   GLsizei count = _chunks.size();
-  const char **strings = new const char *[count];
-  GLint *lengths = new GLint[count];
+  const char **const strings = new const char *[count];
+  GLint *const lengths = new GLint[count];
   for (int i = 0; i < count; i++)
   {
     strings[i] = _chunks[i].content.c_str();
@@ -32,8 +32,11 @@ IncludeShader::IncludeShader(
   }
 
   link();
+
   for (auto _id : _sid)
     glDeleteShader(_id);
+  delete strings;
+  delete lengths;
 }
 
 void IncludeShader::compile(GLuint sid, GLsizei _count, const char **_strings, const GLint *_lengths)
