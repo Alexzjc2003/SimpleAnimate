@@ -9,6 +9,8 @@ DirectionalLight::DirectionalLight(
     const glm::vec3 &_atten) : Light(_color, _atten)
 {
   setDirection(_direction);
+  uniform.set("direction", _direction);
+
 }
 
 DirectionalLight::DirectionalLight(
@@ -17,6 +19,7 @@ DirectionalLight::DirectionalLight(
     const glm::vec3 &_atten) : Light(_ads, _atten)
 {
   setDirection(_direction);
+  uniform.set("direction", _direction);
 }
 
 

@@ -9,6 +9,7 @@ PointLight::PointLight(const glm::vec3 &_position,
     : Light(_color, _atten)
 {
   setPosition(_position);
+  uniform.set("position", _position);
 }
 
 PointLight::PointLight(const glm::vec3 &_position,
@@ -17,4 +18,5 @@ PointLight::PointLight(const glm::vec3 &_position,
     : Light(_ads, _atten)
 {
   setPosition(_position);
+  uniform.set("position", _position);
 }

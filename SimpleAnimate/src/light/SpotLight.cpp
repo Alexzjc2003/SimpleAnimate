@@ -16,6 +16,10 @@ SpotLight::SpotLight(
 {
   setPosition(_position);
   setDirection(_direction);
+  uniform
+      .set("position", _position)
+      .set("direction", _direction)
+      .set("cutoff", cutoff);
 }
 
 SpotLight::SpotLight(
@@ -31,4 +35,8 @@ SpotLight::SpotLight(
 {
   setPosition(_position);
   setDirection(_direction);
+  uniform
+      .set("position", _position)
+      .set("direction", _direction)
+      .set("cutoff", cutoff);
 }

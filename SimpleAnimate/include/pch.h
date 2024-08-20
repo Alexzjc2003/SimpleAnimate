@@ -10,6 +10,7 @@
 // 添加要在此处预编译的标头
 
 #include <array>
+#include <format>
 #include <fstream>
 #include <iostream>
 #include <list>

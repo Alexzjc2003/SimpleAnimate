@@ -2,6 +2,8 @@
 #include "def.h"
 #include "core/Object3D.h"
 #include "core/Color.h"
+#include "core/State.h"
+#include "shader/Uniform.h"
 
 namespace SA
 {
@@ -20,5 +22,9 @@ namespace SA
     glm::vec3 &ambient = ads[0];
     glm::vec3 &diffuse = ads[1];
     glm::vec3 &specular = ads[2];
+
+    State state = State(SA_LIGHT_NEEDS_UPDATE);
+    Uniform uniform;
+
   };
 } // namespace SA
