@@ -15,6 +15,7 @@ namespace SA
   {
   public:
     Object3D(Geometry *geometry, Material *material);
+    virtual ~Object3D() = default;
 
     static const glm::vec3 default_front;
     static const glm::vec3 default_up;

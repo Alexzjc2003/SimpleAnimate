@@ -15,6 +15,7 @@ namespace SA
     Light(const glm::mat3 &_ads =
               glm::mat3(glm::vec3(0.0), glm::vec3(1.0), glm::vec3(0.0)),
           const glm::vec3 &_atten = glm::vec3(1.0, 0.0, 0.0));
+    virtual ~Light() = default;
 
     glm::vec3 atten;
     glm::mat3 ads;
@@ -23,7 +24,7 @@ namespace SA
     glm::vec3 &diffuse = ads[1];
     glm::vec3 &specular = ads[2];
 
-    State state = State(SA_LIGHT_NEEDS_UPDATE);
+    State state = State();
     Uniform uniform;
 
   };

@@ -2,6 +2,7 @@
 
 #include <def.h>
 #include <core/Object3D.h>
+#include <core/Color.h>
 
 namespace SA
 {
@@ -9,5 +10,6 @@ namespace SA
   {
   public:
     Scene();
+    Color color = 0x000000;
   };
 }
