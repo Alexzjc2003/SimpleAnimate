@@ -5,6 +5,8 @@
 
 using namespace SA;
 
+const glm::vec3 Object3D::default_front = glm::vec3(0, 0, -1);
+const glm::vec3 Object3D::default_up = glm::vec3(0, 1, 0);
 int Object3D::nextId = 1;
 
 Object3D::Object3D() : pGeometry(nullptr),

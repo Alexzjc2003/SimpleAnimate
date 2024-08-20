@@ -101,8 +101,4 @@ namespace SA
     glm::mat4 _model;
     bool _model_needs_update;
   };
-
-  const glm::vec3 Object3D::default_front = glm::vec3(0, 0, -1);
-  const glm::vec3 Object3D::default_up = glm::vec3(0, 1, 0);
-
 } // namespace SA
