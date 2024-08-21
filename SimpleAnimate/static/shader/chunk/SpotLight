@@ -1,4 +1,0 @@
-layout (std140) uniform SpotLight_{}
-{{
-  SpotLight light;
-}};

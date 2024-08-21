@@ -137,88 +137,87 @@ vec3 CalcLight(vec2 uv, vec3 normal, vec3 viewDir) {
   vec3 result = vec3(0.0);
   switch(PointLightCount) {
     case 16:
-      result += CalcPointLight(PointLight_15, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_15.light, uv, normal, viewDir);
     case 15:
-      result += CalcPointLight(PointLight_14, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_14.light, uv, normal, viewDir);
     case 14:
-      result += CalcPointLight(PointLight_13, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_13.light, uv, normal, viewDir);
     case 13:
-      result += CalcPointLight(PointLight_12, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_12.light, uv, normal, viewDir);
     case 12:
-      result += CalcPointLight(PointLight_11, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_11.light, uv, normal, viewDir);
     case 11:
-      result += CalcPointLight(PointLight_10, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_10.light, uv, normal, viewDir);
     case 10:
-      result += CalcPointLight(PointLight_9, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_9.light, uv, normal, viewDir);
     case 9:
-      result += CalcPointLight(PointLight_8, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_8.light, uv, normal, viewDir);
     case 8:
-      result += CalcPointLight(PointLight_7, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_7.light, uv, normal, viewDir);
     case 7:
-      result += CalcPointLight(PointLight_6, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_6.light, uv, normal, viewDir);
     case 6:
-      result += CalcPointLight(PointLight_5, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_5.light, uv, normal, viewDir);
     case 5:
-      result += CalcPointLight(PointLight_4, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_4.light, uv, normal, viewDir);
     case 4:
-      result += CalcPointLight(PointLight_3, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_3.light, uv, normal, viewDir);
     case 3:
-      result += CalcPointLight(PointLight_2, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_2.light, uv, normal, viewDir);
     case 2:
-      result += CalcPointLight(PointLight_1, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_1.light, uv, normal, viewDir);
     case 1:
-      result += CalcPointLight(PointLight_0, uv, normal, viewDir);
+      result += CalcPointLight(PointLight_0.light, uv, normal, viewDir);
     case 0:
       break;
   }
 
   switch(DirectionalLightCount) {
     case 16:
-      result += CalcDirectionalLight(DirectionalLight_15, uv, normal, viewDir);
-
+      result += CalcDirectionalLight(DirectionalLight_15.light, uv, normal, viewDir);
     case 15:
-      result += CalcDirectionalLight(DirectionalLight_14, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_14.light, uv, normal, viewDir);
     case 14:
-      result += CalcDirectionalLight(DirectionalLight_13, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_13.light, uv, normal, viewDir);
     case 13:
-      result += CalcDirectionalLight(DirectionalLight_12, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_12.light, uv, normal, viewDir);
     case 12:
-      result += CalcDirectionalLight(DirectionalLight_11, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_11.light, uv, normal, viewDir);
     case 11:
-      result += CalcDirectionalLight(DirectionalLight_10, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_10.light, uv, normal, viewDir);
     case 10:
-      result += CalcDirectionalLight(DirectionalLight_9, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_9.light, uv, normal, viewDir);
     case 9:
-      result += CalcDirectionalLight(DirectionalLight_8, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_8.light, uv, normal, viewDir);
     case 8:
-      result += CalcDirectionalLight(DirectionalLight_7, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_7.light, uv, normal, viewDir);
     case 7:
-      result += CalcDirectionalLight(DirectionalLight_6, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_6.light, uv, normal, viewDir);
     case 6:
-      result += CalcDirectionalLight(DirectionalLight_5, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_5.light, uv, normal, viewDir);
     case 5:
-      result += CalcDirectionalLight(DirectionalLight_4, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_4.light, uv, normal, viewDir);
     case 4:
-      result += CalcDirectionalLight(DirectionalLight_3, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_3.light, uv, normal, viewDir);
     case 3:
-      result += CalcDirectionalLight(DirectionalLight_2, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_2.light, uv, normal, viewDir);
     case 2:
-      result += CalcDirectionalLight(DirectionalLight_1, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_1.light, uv, normal, viewDir);
     case 1:
-      result += CalcDirectionalLight(DirectionalLight_0, uv, normal, viewDir);
+      result += CalcDirectionalLight(DirectionalLight_0.light, uv, normal, viewDir);
     case 0:
       break;
   }
 
   switch(SpotLightCount) {
     case 4:
-      result += CalcSpotLight(SpotLight_3, uv, normal, viewDir);
+      result += CalcSpotLight(SpotLight_3.light, uv, normal, viewDir);
     case 3:
-      result += CalcSpotLight(SpotLight_2, uv, normal, viewDir);
+      result += CalcSpotLight(SpotLight_2.light, uv, normal, viewDir);
     case 2:
-      result += CalcSpotLight(SpotLight_1, uv, normal, viewDir);
+      result += CalcSpotLight(SpotLight_1.light, uv, normal, viewDir);
     case 1:
-      result += CalcSpotLight(SpotLight_0, uv, normal, viewDir);
+      result += CalcSpotLight(SpotLight_0.light, uv, normal, viewDir);
     case 0:
       break;
   }

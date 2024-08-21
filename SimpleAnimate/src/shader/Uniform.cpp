@@ -113,12 +113,14 @@ Uniform &Uniform::set<float>(const std::string &name, const float &value)
 {
   ubo.activate();
   glBufferSubData(GL_UNIFORM_BUFFER, offset_of<float>(name), 4, &value);
+  return *this;
 }
 template <>
 Uniform &Uniform::set<int>(const std::string &name, const int &value)
 {
   ubo.activate();
   glBufferSubData(GL_UNIFORM_BUFFER, offset_of<int>(name), 4, &value);
+  return *this;
 }
 template <>
 Uniform &Uniform::set<bool>(const std::string &name, const bool &value)
@@ -126,24 +128,28 @@ Uniform &Uniform::set<bool>(const std::string &name, const bool &value)
   ubo.activate();
   int _val = value;
   glBufferSubData(GL_UNIFORM_BUFFER, offset_of<bool>(name), 4, &_val);
+  return *this;
 }
 template <>
 Uniform &Uniform::set<glm::vec2>(const std::string &name, const glm::vec2 &value)
 {
   ubo.activate();
   glBufferSubData(GL_UNIFORM_BUFFER, offset_of<glm::vec2>(name), 8, glm::value_ptr(value));
+  return *this;
 }
 template <>
 Uniform &Uniform::set<glm::vec3>(const std::string &name, const glm::vec3 &value)
 {
   ubo.activate();
   glBufferSubData(GL_UNIFORM_BUFFER, offset_of<glm::vec3>(name), 12, glm::value_ptr(value));
+  return *this;
 }
 template <>
 Uniform &Uniform::set<glm::vec4>(const std::string &name, const glm::vec4 &value)
 {
   ubo.activate();
   glBufferSubData(GL_UNIFORM_BUFFER, offset_of<glm::vec4>(name), 16, glm::value_ptr(value));
+  return *this;
 }
 template <>
 Uniform &Uniform::set<glm::mat3>(const std::string &name, const glm::mat3 &value)
@@ -153,10 +159,12 @@ Uniform &Uniform::set<glm::mat3>(const std::string &name, const glm::mat3 &value
   glBufferSubData(GL_UNIFORM_BUFFER, _offset + 0x00, 12, glm::value_ptr(value[0]));
   glBufferSubData(GL_UNIFORM_BUFFER, _offset + 0x10, 12, glm::value_ptr(value[1]));
   glBufferSubData(GL_UNIFORM_BUFFER, _offset + 0x20, 12, glm::value_ptr(value[2]));
+  return *this;
 }
 template <>
 Uniform &Uniform::set<glm::mat4>(const std::string &name, const glm::mat4 &value)
 {
   ubo.activate();
   glBufferSubData(GL_UNIFORM_BUFFER, offset_of<glm::mat4>(name), 64, glm::value_ptr(value));
+  return *this;
 }

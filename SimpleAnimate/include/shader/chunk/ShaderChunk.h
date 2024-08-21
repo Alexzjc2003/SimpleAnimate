@@ -8,31 +8,24 @@
 
 namespace SA
 {
-  class SA_API ShaderChunk
-  {
-  public:
-    std::string content;
+	class SA_API ShaderChunk
+	{
+	public:
+		std::string content;
+		std::string name;
+		virtual ~ShaderChunk()
+		{
+			glDeleteNamedStringARB(name.length(), name.c_str());
+		}
 
-  protected:
-    static std::unordered_map<std::string, std::string> files;
-    ShaderChunk(const std::string &path)
-    {
-      if (files.find(path) == files.end())
-      {
-        std::ifstream ifs;
-        ifs.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-        ifs.open(path);
+	protected:
+		ShaderChunk(const std::string& _name, const std::string& _content)
+			: content(_content), name(_name)
+		{
+			glNamedStringARB(GL_SHADER_INCLUDE_ARB,
+				name.length(), name.c_str(),
+				content.length(), content.c_str());
+		}
+	};
 
-        std::stringstream ss;
-        ss << ifs.rdbuf();
-
-        files[path] = ss.str();
-      }
-    }
-    std::string name;
-  };
-
-#ifdef SA_EXPORTS
-  std::unordered_map<std::string, std::string> ShaderChunk::files;
-#endif
 } // namespace SA

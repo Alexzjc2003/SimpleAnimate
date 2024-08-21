@@ -3,7 +3,6 @@
 #include "shader/chunk/ShaderChunk.h"
 
 #include <format>
-#include <fstream>
 
 #include "glad/glad.h"
 
@@ -12,23 +11,25 @@ namespace SA
   class SA_API SpotLightChunk : public ShaderChunk
   {
   public:
-    SpotLightChunk(const int &index) : ShaderChunk(path)
-    {
-      name = std::format("/SpotLight_{}", index);
-      std::string content = std::format(files[path], index);
-      glNamedStringARB(GL_SHADER_INCLUDE_ARB,
-                       name.length(), name.c_str(),
-                       content.length(), content.c_str());
-    }
-    ~SpotLightChunk()
-    {
-      glDeleteNamedStringARB(name.length(), name.c_str());
-    }
+    SpotLightChunk(const int &index)
+        : ShaderChunk(content(index), name(index)) {}
+    ~SpotLightChunk() {}
 
   private:
-    static const std::string path;
+    static const std::string name(const int &index)
+    {
+      return std::format("/SpotLight_{}", index);
+    }
+    static const std::string content(const int &index)
+    {
+      return std::format(
+          R"(
+(layout (std140) uniform SpotLight_{} 
+{{
+  SpotLight light;
+}};)",
+          index);
+    }
   };
-
-  const std::string SpotLightChunk::path = "./static/shader/chunk/SpotLight";
-
+  
 } // namespace SA

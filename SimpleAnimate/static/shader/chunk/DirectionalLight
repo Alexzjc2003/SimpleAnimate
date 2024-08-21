@@ -1,4 +1,0 @@
-layout (std140) uniform DirectionalLight_{} 
-{{
-  DirectionalLight light;
-}};
