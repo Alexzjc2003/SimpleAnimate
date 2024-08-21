@@ -3,16 +3,17 @@
 
 using namespace SA;
 
-StaticShader CommonMaterial::shader = StaticShader("./static/shader/static/common/.vert", "./static/shader/static/common/.frag");
+StaticShader *CommonMaterial::shader = nullptr;
 
 CommonMaterial::CommonMaterial(
-	const std::unordered_map<std::string, Texture*>& _maps,
-	const Color& _color)
-	: //  Material(_maps),
-	color(_color)
+		const std::unordered_map<std::string, Texture *> &_maps,
+		const Color &_color)
+		: //  Material(_maps),
+			color(_color)
 {
 	diffuseMap = getMap(_maps, "diffuse");
-	pShader = &CommonMaterial::shader;
+	shader = shader ? shader : new StaticShader("./static/shader/static/common/.vert", "./static/shader/static/common/.frag");
+	pShader = CommonMaterial::shader;
 }
 
 void CommonMaterial::updateUniforms()
@@ -21,5 +22,5 @@ void CommonMaterial::updateUniforms()
 	glBindTexture(diffuseMap->target, diffuseMap->texID);
 
 	pShader->use()
-	    .set("uDiffuse", 0);
+			.set("uDiffuse", 0);
 }

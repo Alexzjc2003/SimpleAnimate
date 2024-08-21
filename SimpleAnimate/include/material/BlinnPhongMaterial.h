@@ -21,6 +21,6 @@ namespace SA
     Texture *diffuseMap;
     Texture *specularMap;
 
-    static IncludeShader shader;
+    static IncludeShader* shader;
   };
 } // namespace SA

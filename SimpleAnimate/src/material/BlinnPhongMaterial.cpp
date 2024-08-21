@@ -20,11 +20,7 @@ _chunks()
   return chunks;
 }
 
-IncludeShader BlinnPhongMaterial::shader =
-    IncludeShader(
-        "./static/shader/include/blinn_phong/.vert",
-        "./static/shader/include/blinn_phong/.frag",
-        _chunks());
+IncludeShader *BlinnPhongMaterial::shader = nullptr;
 
 BlinnPhongMaterial::BlinnPhongMaterial(
     const std::unordered_map<std::string, Texture *> &_maps,
@@ -33,7 +29,11 @@ BlinnPhongMaterial::BlinnPhongMaterial(
 {
   diffuseMap = getMap(_maps, "diffuse");
   specularMap = getMap(_maps, "specular");
-  pShader = &BlinnPhongMaterial::shader;
+  shader = new IncludeShader(
+      "./static/shader/include/blinn_phong/.vert",
+      "./static/shader/include/blinn_phong/.frag",
+      _chunks());
+  pShader = BlinnPhongMaterial::shader;
 }
 
 void BlinnPhongMaterial::updateUniforms()
