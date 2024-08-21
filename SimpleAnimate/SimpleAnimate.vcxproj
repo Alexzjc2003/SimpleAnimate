@@ -42,11 +42,19 @@
     <ClCompile Include="src\geometry\Geometry.cpp" />
     <ClCompile Include="src\geometry\GeometryVAO.cpp" />
     <ClCompile Include="src\geometry\PlaneGeometry.cpp" />
+    <ClCompile Include="src\light\DirectionalLight.cpp" />
+    <ClCompile Include="src\light\Light.cpp" />
+    <ClCompile Include="src\light\PointLight.cpp" />
+    <ClCompile Include="src\light\SpotLight.cpp" />
+    <ClCompile Include="src\material\BlinnPhongMaterial.cpp" />
     <ClCompile Include="src\material\CommonMaterial.cpp" />
     <ClCompile Include="src\material\Material.cpp" />
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\shader\IncludeShader.cpp" />
     <ClCompile Include="src\shader\Shader.cpp" />
     <ClCompile Include="src\shader\StaticShader.cpp" />
+    <ClCompile Include="src\shader\UBO.cpp" />
+    <ClCompile Include="src\shader\Uniform.cpp" />
     <ClCompile Include="src\texture\ImageTexture.cpp" />
     <ClCompile Include="src\texture\Texture.cpp" />
     <ClCompile Include="src\util\Logger.cpp" />
@@ -63,6 +71,7 @@
     <ClInclude Include="include\core\Proxy.h" />
     <ClInclude Include="include\core\Renderer.h" />
     <ClInclude Include="include\core\Scene.h" />
+    <ClInclude Include="include\core\State.h" />
     <ClInclude Include="include\core\Window.h" />
     <ClInclude Include="include\debug.h" />
     <ClInclude Include="include\def.h" />
@@ -71,11 +80,23 @@
     <ClInclude Include="include\geometry\Geometry.h" />
     <ClInclude Include="include\geometry\GeometryVAO.h" />
     <ClInclude Include="include\geometry\PlaneGeometry.h" />
+    <ClInclude Include="include\light\DirectionalLight.h" />
+    <ClInclude Include="include\light\Light.h" />
+    <ClInclude Include="include\light\PointLight.h" />
+    <ClInclude Include="include\light\SpotLight.h" />
+    <ClInclude Include="include\material\BlinnPhongMaterial.h" />
     <ClInclude Include="include\material\CommonMaterial.h" />
     <ClInclude Include="include\material\Material.h" />
     <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\shader\chunk\DirectionalLightChunk.h" />
+    <ClInclude Include="include\shader\chunk\PointLightChunk.h" />
+    <ClInclude Include="include\shader\chunk\ShaderChunk.h" />
+    <ClInclude Include="include\shader\chunk\SpotLightChunk.h" />
+    <ClInclude Include="include\shader\IncludeShader.h" />
     <ClInclude Include="include\shader\Shader.h" />
     <ClInclude Include="include\shader\StaticShader.h" />
+    <ClInclude Include="include\shader\UBO.h" />
+    <ClInclude Include="include\shader\Uniform.h" />
     <ClInclude Include="include\texture\ImageTexture.h" />
     <ClInclude Include="include\texture\Texture.h" />
     <ClInclude Include="include\util\Logger.h" />
@@ -133,9 +154,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\include;E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\SimpleAnimate\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\lib;$(LibraryPath)</LibraryPath>
-    <SourcePath>E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\externals\src;E:\Users\zzlxx\文档\mycode\opengl\projects\SimpleAnimate\SimpleAnimate\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)..\externals\include;$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\externals\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(ProjectDir)..\externals\src;$(ProjectDir)src;$(SourcePath)</SourcePath>
     <OutDir>.\bin\$(configuration)\</OutDir>
     <IntDir>.\obj\$(configuration)\</IntDir>
   </PropertyGroup>
@@ -197,6 +218,7 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y $(TargetDir)SimpleAnimate.lib $(ProjectDir)asset\SimpleAnimate.lib
+
 xcopy /Y $(TargetDir)SimpleAnimate.dll $(ProjectDir)asset\SimpleAnimate.dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
