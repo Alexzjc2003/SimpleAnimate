@@ -4,7 +4,7 @@
 
 namespace SA
 {
-  class SA_API PointLight : Light
+  class SA_API PointLight : public Light
   {
   public:
     PointLight(

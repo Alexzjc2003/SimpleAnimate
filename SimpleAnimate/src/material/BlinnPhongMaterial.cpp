@@ -31,8 +31,8 @@ BlinnPhongMaterial::BlinnPhongMaterial(
     const float &_shininess)
     : shiniess(_shininess)
 {
-  diffuseMap = getMap(_maps, "diffuseMap");
-  specularMap = getMap(_maps, "specularMap");
+  diffuseMap = getMap(_maps, "diffuse");
+  specularMap = getMap(_maps, "specular");
   pShader = &BlinnPhongMaterial::shader;
 }
 

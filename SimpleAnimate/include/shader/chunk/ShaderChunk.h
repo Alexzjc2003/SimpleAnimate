@@ -32,5 +32,7 @@ namespace SA
     std::string name;
   };
 
+#ifdef SA_EXPORTS
   std::unordered_map<std::string, std::string> ShaderChunk::files;
+#endif
 } // namespace SA
