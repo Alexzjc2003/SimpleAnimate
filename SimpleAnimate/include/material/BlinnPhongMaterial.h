@@ -7,7 +7,7 @@
 
 namespace SA
 {
-  class BlinnPhongMaterial : public Material
+  class SA_API BlinnPhongMaterial : public Material
   {
   public:
     BlinnPhongMaterial(
