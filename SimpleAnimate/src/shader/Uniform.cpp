@@ -6,13 +6,13 @@
 using namespace SA;
 
 Uniform::Uniform() : ubo() {}
-Uniform::Uniform(std::initializer_list<std::pair<const std::string &, const std::variant<float, int, bool, glm::vec2, glm::vec3, glm::vec4, glm::mat3, glm::mat4>>> _l) : ubo()
-{
-  for (auto &_p : _l)
-  {
-    set(_p.first, _p.second);
-  }
-}
+//Uniform::Uniform(std::initializer_list<std::pair<const std::string &, const std::variant<float, int, bool, glm::vec2, glm::vec3, glm::vec4, glm::mat3, glm::mat4>>> _l) : ubo()
+//{
+//  for (auto &_p : _l)
+//  {
+//    set(_p.first, _p.second.);
+//  }
+//}
 
 size_t Uniform::align_to(const size_t &_alignment)
 {

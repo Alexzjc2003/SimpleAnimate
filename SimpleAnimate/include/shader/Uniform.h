@@ -17,7 +17,7 @@ namespace SA
   {
   public:
     Uniform();
-    Uniform(std::initializer_list<std::pair<const std::string &, const std::variant<float, int, bool, glm::vec2, glm::vec3, glm::vec4, glm::mat3, glm::mat4>>>);
+    //Uniform(std::initializer_list<std::pair<const std::string &, const std::variant<float, int, bool, glm::vec2, glm::vec3, glm::vec4, glm::mat3, glm::mat4>>>);
 
     UBO ubo;
     template <typename T>
