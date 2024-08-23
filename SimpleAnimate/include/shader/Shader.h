@@ -12,7 +12,7 @@ namespace SA
     const Shader &use() const;
     template <typename T>
     const Shader &set(const std::string &uName, const T &value) const;
-    const Shader &bindUBO(const std::string &uName, const UBO &ubo) const;
+    const Shader &bindUBO(const std::string &uName, const UBO &ubo, const GLuint &index) const;
 
 
   protected:

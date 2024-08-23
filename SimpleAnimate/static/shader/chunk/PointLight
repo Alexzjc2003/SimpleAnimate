@@ -2,9 +2,13 @@
 #define MAX_POINT_LIGHTS 8
 #endif
 
-layout (std140) uniform PointLight {
-    mat3 ads;
-    vec3 atten;
+struct PointLight_t {
+  mat3 ads;
+  vec3 atten;
 
-    vec3 position;
+  vec3 position;
+};
+
+layout(std140) uniform PointLight {
+  PointLight_t light;
 } pointLights[MAX_POINT_LIGHTS];

@@ -133,9 +133,10 @@ const Shader &Shader::set<glm::vec2>(const std::string &uName, const glm::vec2 &
   return *this;
 }
 
-const Shader &Shader::bindUBO(const std::string &uName, const UBO &ubo) const
+const Shader &Shader::bindUBO(const std::string &uName, const UBO &ubo, const GLuint& index) const
 {
   auto idx = glGetUniformBlockIndex(this->id, uName.c_str());
-  glUniformBlockBinding(this->id, idx, ubo.ubo);
+  glUniformBlockBinding(this->id, idx, index);
+  glBindBufferBase(GL_UNIFORM_BUFFER, index, ubo.ubo);
   return *this;
 }

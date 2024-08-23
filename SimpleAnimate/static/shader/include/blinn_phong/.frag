@@ -45,7 +45,7 @@ float CalcAttenuation(float dist, vec3 atten) {
   return 1.0 / (atten.x + atten.y * dist + atten.z * dist * dist);
 }
 
-vec3 CalcPointLight(PointLight light, vec2 uv, vec3 normal, vec3 viewDir) {
+vec3 CalcPointLight(PointLight_t light, vec2 uv, vec3 normal, vec3 viewDir) {
   vec3 lightDir = normalize(light.position - fs_in.pos_frag);
   vec3 color = CalcAmbient(texture2D(diffuseMap, uv).rgb) +
     CalcDiffuse(texture2D(diffuseMap, uv).rgb, normal, lightDir) +
@@ -53,7 +53,7 @@ vec3 CalcPointLight(PointLight light, vec2 uv, vec3 normal, vec3 viewDir) {
   return color * CalcAttenuation(distance(fs_in.pos_frag, light.position), light.atten);
 }
 
-vec3 CalcDirectionalLight(DirectionalLight light, vec2 uv, vec3 normal, vec3 viewDir) {
+vec3 CalcDirectionalLight(DirectionalLight_t light, vec2 uv, vec3 normal, vec3 viewDir) {
   vec3 lightDir = normalize(-light.direction);
   vec3 color = CalcAmbient(texture2D(diffuseMap, uv).rgb) +
     CalcDiffuse(texture2D(diffuseMap, uv).rgb, normal, lightDir) +
@@ -61,7 +61,7 @@ vec3 CalcDirectionalLight(DirectionalLight light, vec2 uv, vec3 normal, vec3 vie
   return color;
 }
 
-vec3 CalcSpotLight(SpotLight light, vec2 uv, vec3 normal, vec3 viewDir) {
+vec3 CalcSpotLight(SpotLight_t light, vec2 uv, vec3 normal, vec3 viewDir) {
   vec3 lightDir = normalize(light.position - fs_in.pos_frag);
   float theta = dot(lightDir, normalize(-light.direction));
   float epsilon = light.cutoff.y - light.cutoff.x;
@@ -79,16 +79,59 @@ vec3 CalcSpotLight(SpotLight light, vec2 uv, vec3 normal, vec3 viewDir) {
 vec3 CalcLight(vec2 uv, vec3 normal, vec3 viewDir) {
   vec3 result = vec3(0.0);
 
-  for(int i = 0; i < min(PointLightCount, MAX_POINT_LIGHTS); i++) {
-    result += CalcPointLight(pointLights[i], uv, normal, viewDir);
+  // for(int i = 0; i < min(PointLightCount, MAX_POINT_LIGHTS); i++) {
+  //   result += CalcPointLight(pointLights[i].light, uv, normal, viewDir);
+  // }
+
+  // for(int i = 0; i < min(DirectionalLightCount, MAX_DIRECTIONAL_LIGHTS); i++) {
+  //   result += CalcDirectionalLight(directionalLights[i].light, uv, normal, viewDir);
+  // }
+
+  // for(int i = 0; i < min(SpotLightCount, MAX_SPOT_LIGHTS); i++) {
+  //   result += CalcSpotLight(spotLights[i].light, uv, normal, viewDir);
+  // }
+
+  switch(PointLightCount) {
+    case 8:
+      result += CalcPointLight(pointLights[7].light, uv, normal, viewDir);
+    case 7:
+      result += CalcPointLight(pointLights[6].light, uv, normal, viewDir);
+    case 6:
+      result += CalcPointLight(pointLights[5].light, uv, normal, viewDir);
+    case 5:
+      result += CalcPointLight(pointLights[4].light, uv, normal, viewDir);
+    case 4:
+      result += CalcPointLight(pointLights[3].light, uv, normal, viewDir);
+    case 3:
+      result += CalcPointLight(pointLights[2].light, uv, normal, viewDir);
+    case 2:
+      result += CalcPointLight(pointLights[1].light, uv, normal, viewDir);
+    case 1:
+      result += CalcPointLight(pointLights[0].light, uv, normal, viewDir);
+    case 0:
+      break;
   }
 
-  for(int i = 0; i < min(DirectionalLightCount, MAX_DIRECTIONAL_LIGHTS); i++) {
-    result += CalcDirectionalLight(directionalLights[i], uv, normal, viewDir);
+  switch(DirectionalLightCount) {
+    case 4:
+      result += CalcDirectionalLight(directionalLights[3].light, uv, normal, viewDir);
+    case 3:
+      result += CalcDirectionalLight(directionalLights[2].light, uv, normal, viewDir);
+    case 2:
+      result += CalcDirectionalLight(directionalLights[1].light, uv, normal, viewDir);
+    case 1:
+      result += CalcDirectionalLight(directionalLights[0].light, uv, normal, viewDir);
+    case 0:
+      break;
   }
 
-  for(int i = 0; i < min(SpotLightCount, MAX_SPOT_LIGHTS); i++) {
-    result += CalcSpotLight(spotLights[i], uv, normal, viewDir);
+  switch(SpotLightCount) {
+    case 2:
+      result += CalcSpotLight(spotLights[1].light, uv, normal, viewDir);
+    case 1:
+      result += CalcSpotLight(spotLights[0].light, uv, normal, viewDir);
+    case 0:
+      break;
   }
 
   return result;

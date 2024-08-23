@@ -77,22 +77,23 @@ void Renderer::renderItem(RenderItem& item, bool first_time)
 	{
 		BlinnPhongMaterial* pMaterial = dynamic_cast<BlinnPhongMaterial*>(item.material);
 		size_t i;
+    GLuint j = 0;
 		// Point light
-		for (i = 0; i < lights[Point].size(); ++i)
+		for (i = 0; i < lights[Point].size(); ++i, ++j)
 		{
-			item.shader->bindUBO(std::format("PointLight_{}", i), lights[Point][i]->uniform.ubo);
+			item.shader->bindUBO(std::format("PointLight[{}]", i), lights[Point][i]->uniform.ubo, j);
 		}
 		item.shader->set("PointLightCount", (int)i);
 		// Directional light
-		for (i = 0; i < lights[Directional].size(); ++i)
+		for (i = 0; i < lights[Directional].size(); ++i, ++j)
 		{
-			item.shader->bindUBO(std::format("DirectionalLight_{}", i), lights[Directional][i]->uniform.ubo);
+			item.shader->bindUBO(std::format("DirectionalLight[{}]", i), lights[Directional][i]->uniform.ubo, j);
 		}
 		item.shader->set("DirectionalLightCount", (int)i);
 		// Spot light
-		for (i = 0; i < lights[Spot].size(); ++i)
+		for (i = 0; i < lights[Spot].size(); ++i, ++j)
 		{
-			item.shader->bindUBO(std::format("SpotLight_{}", i), lights[Spot][i]->uniform.ubo);
+			item.shader->bindUBO(std::format("SpotLight[{}]", i), lights[Spot][i]->uniform.ubo, j);
 		}
 		item.shader->set("SpotLightCount", (int)i);
 	}

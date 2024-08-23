@@ -2,7 +2,7 @@
 #define MAX_SPOT_LIGHTS 2
 #endif
 
-layout(std140) uniform SpotLight {
+struct SpotLight_t {
   mat3 ads;
   vec3 atten;
 
@@ -10,4 +10,8 @@ layout(std140) uniform SpotLight {
   vec3 direction;
 
   vec2 cutoff;
+};
+
+layout(std140) uniform SpotLight {
+  SpotLight_t light;
 } spotLights[MAX_SPOT_LIGHTS];
