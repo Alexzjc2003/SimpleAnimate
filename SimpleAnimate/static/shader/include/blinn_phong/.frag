@@ -1,81 +1,24 @@
 #version 330 core
 #extension GL_ARB_shading_language_include : require
 
-struct PointLight {
-  mat3 ads;
-  vec3 atten;
-
-  vec3 position;
-};
-
-struct DirectionalLight {
-  mat3 ads;
-  vec3 atten;
-
-  vec3 direction;
-};
-
-struct SpotLight {
-  mat3 ads;
-  vec3 atten;
-
-  vec3 position;
-  vec3 direction;
-
-  vec2 cutoff;
-};
-
-// 16 PointLights
+// max 8 point lights
+#define MAX_POINT_LIGHTS 8
 uniform int PointLightCount;
+#include "/PointLight"
 
-#include "/PointLight_0"
-#include "/PointLight_1"
-#include "/PointLight_2"
-#include "/PointLight_3"
-#include "/PointLight_4"
-#include "/PointLight_5"
-#include "/PointLight_6"
-#include "/PointLight_7"
-#include "/PointLight_8"
-#include "/PointLight_9"
-#include "/PointLight_10"
-#include "/PointLight_11"
-#include "/PointLight_12"
-#include "/PointLight_13"
-#include "/PointLight_14"
-#include "/PointLight_15"
-
-// 16 DirectionalLight
+// max 4 directional lights
+#define MAX_DIRECTIONAL_LIGHTS 4
 uniform int DirectionalLightCount;
+#include "/DirectionalLight"
 
-#include "/DirectionalLight_0"
-#include "/DirectionalLight_1"
-#include "/DirectionalLight_2"
-#include "/DirectionalLight_3"
-#include "/DirectionalLight_4"
-#include "/DirectionalLight_5"
-#include "/DirectionalLight_6"
-#include "/DirectionalLight_7"
-#include "/DirectionalLight_8"
-#include "/DirectionalLight_9"
-#include "/DirectionalLight_10"
-#include "/DirectionalLight_11"
-#include "/DirectionalLight_12"
-#include "/DirectionalLight_13"
-#include "/DirectionalLight_14"
-#include "/DirectionalLight_15"
-
-// 4 SpotLight
+// max 2 spot lights
+#define MAX_SPOT_LIGHTS 2
 uniform int SpotLightCount;
-
-#include "/SpotLight_0"
-#include "/SpotLight_1"
-#include "/SpotLight_2"
-#include "/SpotLight_3"
+#include "/SpotLight"
 
 uniform sampler2D diffuseMap;
-// uniform sampler2D normalMap;
 uniform sampler2D specularMap;
+// uniform sampler2D normalMap;
 uniform float shininess;
 
 in BlinnPhong {
@@ -135,99 +78,25 @@ vec3 CalcSpotLight(SpotLight light, vec2 uv, vec3 normal, vec3 viewDir) {
 
 vec3 CalcLight(vec2 uv, vec3 normal, vec3 viewDir) {
   vec3 result = vec3(0.0);
-  switch(PointLightCount) {
-    case 16:
-      result += CalcPointLight(PointLight_15.light, uv, normal, viewDir);
-    case 15:
-      result += CalcPointLight(PointLight_14.light, uv, normal, viewDir);
-    case 14:
-      result += CalcPointLight(PointLight_13.light, uv, normal, viewDir);
-    case 13:
-      result += CalcPointLight(PointLight_12.light, uv, normal, viewDir);
-    case 12:
-      result += CalcPointLight(PointLight_11.light, uv, normal, viewDir);
-    case 11:
-      result += CalcPointLight(PointLight_10.light, uv, normal, viewDir);
-    case 10:
-      result += CalcPointLight(PointLight_9.light, uv, normal, viewDir);
-    case 9:
-      result += CalcPointLight(PointLight_8.light, uv, normal, viewDir);
-    case 8:
-      result += CalcPointLight(PointLight_7.light, uv, normal, viewDir);
-    case 7:
-      result += CalcPointLight(PointLight_6.light, uv, normal, viewDir);
-    case 6:
-      result += CalcPointLight(PointLight_5.light, uv, normal, viewDir);
-    case 5:
-      result += CalcPointLight(PointLight_4.light, uv, normal, viewDir);
-    case 4:
-      result += CalcPointLight(PointLight_3.light, uv, normal, viewDir);
-    case 3:
-      result += CalcPointLight(PointLight_2.light, uv, normal, viewDir);
-    case 2:
-      result += CalcPointLight(PointLight_1.light, uv, normal, viewDir);
-    case 1:
-      result += CalcPointLight(PointLight_0.light, uv, normal, viewDir);
-    case 0:
-      break;
+
+  for(int i = 0; i < min(PointLightCount, MAX_POINT_LIGHTS); i++) {
+    result += CalcPointLight(pointLights[i], uv, normal, viewDir);
   }
 
-  switch(DirectionalLightCount) {
-    case 16:
-      result += CalcDirectionalLight(DirectionalLight_15.light, uv, normal, viewDir);
-    case 15:
-      result += CalcDirectionalLight(DirectionalLight_14.light, uv, normal, viewDir);
-    case 14:
-      result += CalcDirectionalLight(DirectionalLight_13.light, uv, normal, viewDir);
-    case 13:
-      result += CalcDirectionalLight(DirectionalLight_12.light, uv, normal, viewDir);
-    case 12:
-      result += CalcDirectionalLight(DirectionalLight_11.light, uv, normal, viewDir);
-    case 11:
-      result += CalcDirectionalLight(DirectionalLight_10.light, uv, normal, viewDir);
-    case 10:
-      result += CalcDirectionalLight(DirectionalLight_9.light, uv, normal, viewDir);
-    case 9:
-      result += CalcDirectionalLight(DirectionalLight_8.light, uv, normal, viewDir);
-    case 8:
-      result += CalcDirectionalLight(DirectionalLight_7.light, uv, normal, viewDir);
-    case 7:
-      result += CalcDirectionalLight(DirectionalLight_6.light, uv, normal, viewDir);
-    case 6:
-      result += CalcDirectionalLight(DirectionalLight_5.light, uv, normal, viewDir);
-    case 5:
-      result += CalcDirectionalLight(DirectionalLight_4.light, uv, normal, viewDir);
-    case 4:
-      result += CalcDirectionalLight(DirectionalLight_3.light, uv, normal, viewDir);
-    case 3:
-      result += CalcDirectionalLight(DirectionalLight_2.light, uv, normal, viewDir);
-    case 2:
-      result += CalcDirectionalLight(DirectionalLight_1.light, uv, normal, viewDir);
-    case 1:
-      result += CalcDirectionalLight(DirectionalLight_0.light, uv, normal, viewDir);
-    case 0:
-      break;
+  for(int i = 0; i < min(DirectionalLightCount, MAX_DIRECTIONAL_LIGHTS); i++) {
+    result += CalcDirectionalLight(directionalLights[i], uv, normal, viewDir);
   }
 
-  switch(SpotLightCount) {
-    case 4:
-      result += CalcSpotLight(SpotLight_3.light, uv, normal, viewDir);
-    case 3:
-      result += CalcSpotLight(SpotLight_2.light, uv, normal, viewDir);
-    case 2:
-      result += CalcSpotLight(SpotLight_1.light, uv, normal, viewDir);
-    case 1:
-      result += CalcSpotLight(SpotLight_0.light, uv, normal, viewDir);
-    case 0:
-      break;
+  for(int i = 0; i < min(SpotLightCount, MAX_SPOT_LIGHTS); i++) {
+    result += CalcSpotLight(spotLights[i], uv, normal, viewDir);
   }
 
+  return result;
 }
 
 out vec4 FragColor;
 
 uniform vec3 camPos;
-
 
 void main() {
   FragColor = vec4(CalcLight(fs_in.uv, fs_in.norm_frag, normalize(camPos - fs_in.pos_frag)), 1.0);

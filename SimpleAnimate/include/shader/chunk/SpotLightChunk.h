@@ -2,8 +2,6 @@
 #include "def.h"
 #include "shader/chunk/ShaderChunk.h"
 
-#include <format>
-
 #include "glad/glad.h"
 
 namespace SA
@@ -11,25 +9,25 @@ namespace SA
   class SA_API SpotLightChunk : public ShaderChunk
   {
   public:
-    SpotLightChunk(const int &index)
-        : ShaderChunk(content(index), name(index)) {}
+    SpotLightChunk()
+        : ShaderChunk(name(), content()) {}
     ~SpotLightChunk() {}
 
   private:
-    static const std::string name(const int &index)
+    static const std::string name()
     {
-      return std::format("/SpotLight_{}", index);
+      return "/SpotLight";
     }
-    static const std::string content(const int &index)
+    static const std::string content()
     {
-      return std::format(
-          R"(
-(layout (std140) uniform SpotLight_{} 
-{{
-  SpotLight light;
-}};)",
-          index);
+      std::fstream fs;
+      fs.open("./static/shader/chunk/SpotLight");
+      std::stringstream ss;
+      ss << fs.rdbuf();
+      fs.close();
+
+      return ss.str();
     }
   };
-  
+
 } // namespace SA

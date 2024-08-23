@@ -74,7 +74,7 @@ void Shader::compile(GLuint sid)
   if (!success)
   {
     glGetShaderInfoLog(sid, 512, NULL, info);
-    std::cerr << "Shader::load_from_strings: Fail to create shader" << std::endl
+    std::cerr << "Shader::compile: Fail to compile shader" << std::endl
               << info << std::endl;
   }
 }

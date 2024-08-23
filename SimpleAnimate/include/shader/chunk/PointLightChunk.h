@@ -11,24 +11,24 @@ namespace SA
   class SA_API PointLightChunk : public ShaderChunk
   {
   public:
-    PointLightChunk(const int &index)
-        : ShaderChunk(content(index), name(index)) {}
+    PointLightChunk()
+        : ShaderChunk(name(), content()) {}
     ~PointLightChunk() {}
 
   private:
-    static const std::string name(const int &index)
+    static const std::string name()
     {
-      return std::format("/PointLight_{}", index);
+      return "/PointLight";
     }
-    static const std::string content(const int &index)
+    static const std::string content()
     {
-      return std::format(
-          R"(
-(layout (std140) uniform PointLight_{} 
-{{
-  PointLight light;
-}};)",
-          index);
+      std::fstream fs;
+      fs.open("./static/shader/chunk/PointLight");
+      std::stringstream ss;
+      ss << fs.rdbuf();
+      fs.close();
+
+      return ss.str();
     }
   };
 

@@ -4,17 +4,17 @@
 using namespace SA;
 
 IncludeShader::IncludeShader(
-    const char *_vs_path, const char *_fs_path,
-    const std::vector<ShaderChunk> &_chunks)
+  const char* _vs_path, const char* _fs_path,
+  const std::vector<ShaderChunk>& _chunks)
 {
   // process chunks
   GLsizei count = _chunks.size();
-  const char **const strings = new const char *[count];
-  GLint *const lengths = new GLint[count];
+  const char** const strings = new const char* [count];
+  GLint* const lengths = new GLint[count];
   for (int i = 0; i < count; i++)
   {
-    strings[i] = _chunks[i].content.c_str();
-    lengths[i] = _chunks[i].content.size();
+    strings[i] = _chunks[i].name.c_str();
+    lengths[i] = _chunks[i].name.length();
   }
 
   std::vector<GLuint> _sid;
@@ -35,14 +35,20 @@ IncludeShader::IncludeShader(
 
   for (auto _id : _sid)
     glDeleteShader(_id);
-  delete strings;
-  delete lengths;
+  delete[] strings;
+  delete[] lengths;
 }
 
-void IncludeShader::compile(GLuint sid, GLsizei _count, const char **_strings, const GLint *_lengths)
+void IncludeShader::compile(GLuint sid, GLsizei _count, const char** _strings, const GLint* _lengths)
 {
   int success;
   char info[512];
+
+  //for (auto i = 0; i < _count; ++i)
+  //{
+  //  if (glIsNamedStringARB(_lengths[i], _strings[i]))
+  //    printf("%d, %s\n", _lengths[i], _strings[i]);
+  //}
 
   glCompileShaderIncludeARB(sid, _count, _strings, _lengths);
 
@@ -51,6 +57,6 @@ void IncludeShader::compile(GLuint sid, GLsizei _count, const char **_strings, c
   {
     glGetShaderInfoLog(sid, 512, NULL, info);
     std::cerr << "Shader::load_from_strings: Fail to create shader" << std::endl
-              << info << std::endl;
+      << info << std::endl;
   }
 }

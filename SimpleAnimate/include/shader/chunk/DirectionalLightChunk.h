@@ -11,24 +11,24 @@ namespace SA
   class SA_API DirectionalLightChunk : public ShaderChunk
   {
   public:
-    DirectionalLightChunk(const int &index)
-        : ShaderChunk(content(index), name(index)) {}
-    ~DirectionalLightChunk() {}
+    DirectionalLightChunk()
+        : ShaderChunk(name(), content()) {}
+    ~DirectionalLightChunk() {};
 
   private:
-    static const std::string name(const int &index)
+    static const std::string name()
     {
-      return std::format("/DirectionalLight_{}", index);
+      return "/DirectionalLight";
     }
-    static const std::string content(const int &index)
+    static const std::string content()
     {
-      return std::format(
-          R"(
-(layout (std140) uniform DirectionalLight_{} 
-{{
-  DirectionalLight light;
-}};)",
-          index);
+      std::fstream fs;
+      fs.open("./static/shader/chunk/DirectionalLight");
+      std::stringstream ss;
+      ss << fs.rdbuf();
+      fs.close();
+
+      return ss.str();
     }
   };
 

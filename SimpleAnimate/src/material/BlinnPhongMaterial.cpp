@@ -11,12 +11,9 @@ static const std::vector<ShaderChunk>
 _chunks()
 {
   std::vector<ShaderChunk> chunks;
-  for (size_t i = 0; i < 16; i++)
-    chunks.push_back(PointLightChunk(i));
-  for (size_t i = 0; i < 16; i++)
-    chunks.push_back(DirectionalLightChunk(i));
-  for (size_t i = 0; i < 4; i++)
-    chunks.push_back(SpotLightChunk(i));
+  chunks.push_back(DirectionalLightChunk());
+  chunks.push_back(PointLightChunk());
+  chunks.push_back(SpotLightChunk());
   return chunks;
 }
 
