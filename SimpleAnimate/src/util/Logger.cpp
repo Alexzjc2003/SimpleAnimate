@@ -45,6 +45,17 @@ Logger &Logger::log<glm::vec3>(const glm::vec3 val, const std::string &name)
 	return *this;
 }
 template <>
+Logger& Logger::log<glm::vec4>(const glm::vec4 val, const std::string& name)
+{
+  // std::cout
+  _ss
+      << name << ":" << std::endl
+      << std::fixed << std::setprecision(3) << std::setiosflags(std::ios::right)
+      << "(" << std::setw(6) << val[0] << "," << std::setw(6) << val[1] << "," << std::setw(6) << val[2] << "," << std::setw(6) << val[3] << ")" << std::endl
+      << std::endl;
+  return *this;
+}
+template <>
 Logger &Logger::log<glm::mat3>(const glm::mat3 val, const std::string &name)
 {
 	// std::cout

@@ -22,3 +22,10 @@ Light::Light(const glm::mat3 &_ads, const glm::vec3 &_atten)
         .set("ads", ads)
         .set("atten", atten);
 }
+
+void Light::updateUniform()
+{
+    uniform
+        .set("ads", ads)
+        .set("atten", atten);
+}

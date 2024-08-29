@@ -26,5 +26,7 @@ namespace SA
 		State state = State();
 		Uniform uniform;
 
+		virtual void updateUniform();
+
 	};
 } // namespace SA

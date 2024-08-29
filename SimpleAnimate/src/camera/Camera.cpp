@@ -19,13 +19,11 @@ Camera::Camera(float _top, float _bottom, float _left, float _right, float _near
 
 glm::mat4 Camera::getViewMatrix()
 {
-  logger.log(getPosition(),"pos");
-  logger.log(getDirection(),"dir");
-
   return glm::lookAt(
-      getPosition(),
-      getPosition() + getDirection(),
-      glm::mat3(getModelLocal()) * glm::vec3(0, 1, 0));
+      position,
+      position + getDirLocal(),
+      static_cast<glm::mat3>(getQuaternion()) * default_up);
+
 }
 
 glm::mat4 Camera::getProjMatrix()

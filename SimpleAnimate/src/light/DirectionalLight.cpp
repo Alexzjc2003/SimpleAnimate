@@ -4,24 +4,27 @@
 using namespace SA;
 
 DirectionalLight::DirectionalLight(
-	const Color& _color,
-	const glm::vec3& _direction,
-	const glm::vec3& _atten)
-	: Light(_color, _atten)
+		const Color &_color,
+		const glm::vec3 &_direction,
+		const glm::vec3 &_atten)
+		: Light(_color, _atten)
 {
-	setDirection(_direction);
-	uniform.set("direction", _direction);
-
+	setDir(_direction);
+	uniform.set("direction", getDirWorld());
 }
 
 DirectionalLight::DirectionalLight(
-	const glm::mat3& _ads,
-	const glm::vec3& _direction,
-	const glm::vec3& _atten)
-	: Light(_ads, _atten)
+		const glm::mat3 &_ads,
+		const glm::vec3 &_direction,
+		const glm::vec3 &_atten)
+		: Light(_ads, _atten)
 {
-	setDirection(_direction);
-	uniform.set("direction", _direction);
+	setDir(_direction);
+	uniform.set("direction", getDirWorld());
 }
 
-
+void DirectionalLight::updateUniform()
+{
+	Light::updateUniform();
+	uniform.set("direction", getDirWorld());
+}

@@ -18,7 +18,7 @@ uniform mat4 uProj;
 
 void main() {
   vs_out.pos_frag = (uModel * vec4(aPos, 1.0)).xyz;
-  vs_out.norm_frag = transpose(inverse(mat3(uModel))) * aNorm;
+  vs_out.norm_frag = mat3(transpose(inverse(uModel))) * aNorm;
   vs_out.uv = aUV;
 
   gl_Position = uProj * uView * uModel * vec4(aPos, 1.0);

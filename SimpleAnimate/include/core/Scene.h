@@ -11,5 +11,9 @@ namespace SA
   public:
     Scene();
     Color color = 0x000000;
+
+    //Scene& add(Object3D*);
+    //Scene& remove(Object3D*);
+
   };
 }

@@ -58,6 +58,7 @@
     <ClCompile Include="src\texture\ImageTexture.cpp" />
     <ClCompile Include="src\texture\Texture.cpp" />
     <ClCompile Include="src\util\Logger.cpp" />
+    <ClCompile Include="src\util\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\camera\Camera.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="include\texture\ImageTexture.h" />
     <ClInclude Include="include\texture\Texture.h" />
     <ClInclude Include="include\util\Logger.h" />
+    <ClInclude Include="include\util\Math.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -120,6 +120,9 @@
     <ClCompile Include="src\shader\Uniform.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\util\Math.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\camera\Camera.h">
@@ -240,6 +243,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\shader\Uniform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\Math.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

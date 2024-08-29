@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "light/SpotLight.h"
 
+#include "util/Logger.h"
+
 using namespace SA;
 
 SpotLight::SpotLight(
@@ -14,11 +16,11 @@ SpotLight::SpotLight(
 					glm::cos(glm::radians(_cutoff_outer)),
 					glm::cos(glm::radians(_cutoff_inner)))
 {
-	setPosition(_position);
-	setDirection(_direction);
+	setPos(_position);
+	setDir(_direction);
 	uniform
-			.set("position", _position)
-			.set("direction", _direction)
+			.set("position", getPosWorld())
+			.set("direction", getDirWorld())
 			.set("cutoff", cutoff);
 }
 
@@ -33,10 +35,19 @@ SpotLight::SpotLight(
 					glm::cos(glm::radians(_cutoff_outer)),
 					glm::cos(glm::radians(_cutoff_inner)))
 {
-	setPosition(_position);
-	setDirection(_direction);
+	setPos(_position);
+	setDir(_direction);
 	uniform
-			.set("position", _position)
-			.set("direction", _direction)
+			.set("position", getPosWorld())
+			.set("direction", getDirWorld())
+			.set("cutoff", cutoff);
+}
+
+void SpotLight::updateUniform()
+{
+	Light::updateUniform();
+	uniform
+			.set("position", getPosWorld())
+			.set("direction", getDirWorld())
 			.set("cutoff", cutoff);
 }
