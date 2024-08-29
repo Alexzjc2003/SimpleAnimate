@@ -36,6 +36,9 @@ namespace SA
 		template <>
 		Logger& log<glm::vec3>(const glm::vec3, const std::string&);
 
+    template <>
+    Logger& log<glm::vec4>(const glm::vec4, const std::string&);
+
 		template <>
 		Logger& log<glm::mat3>(const glm::mat3, const std::string&);
 

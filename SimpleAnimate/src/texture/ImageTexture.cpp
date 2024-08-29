@@ -42,7 +42,7 @@ ImageTexture::ImageTexture(
     break;
   }
 
-  glTexImage2D(target, 0, GL_SRGB,
+  glTexImage2D(target, 0, GL_RGB,
                width, height, 0, format, type, data);
   glGenerateMipmap(target);
 

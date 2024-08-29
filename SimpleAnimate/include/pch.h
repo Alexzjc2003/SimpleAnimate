@@ -10,6 +10,7 @@
 // 添加要在此处预编译的标头
 
 #include <array>
+#include <format>
 #include <fstream>
 #include <iostream>
 #include <list>
@@ -17,6 +18,7 @@
 #include <stack>
 #include <string>
 #include <unordered_map>
+#include <variant>
 #include <vector>
 
 #include <cmath>
@@ -25,6 +27,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/type_trait.hpp>
 #include <glm/gtx/quaternion.hpp>
 
 #include <glad/glad.h>

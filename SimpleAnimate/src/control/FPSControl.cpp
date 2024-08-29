@@ -100,8 +100,8 @@ void FPSControl::inputLoop(double delta)
 	// As controls are usually applied to cameras,
 	// for intuitions, we have this mapping, that
 	// forward --> Z-
-	// right   --> X+
-	// up      --> Y+
+	//   right --> X+
+	//      up --> Y+
 	// and vice versa.
 
 	auto _e = pObject->getEuler();
@@ -123,5 +123,5 @@ void FPSControl::inputLoop(double delta)
 
 	auto _d = (glm::mat3)glm::eulerAngleY(_e.y) * _h + _v;
 
-	pObject->setPosition(pObject->getPosition() + _d * glm::vec3(delta));
+	pObject->setPos(pObject->getPosLocal() + _d * glm::vec3(delta));
 }

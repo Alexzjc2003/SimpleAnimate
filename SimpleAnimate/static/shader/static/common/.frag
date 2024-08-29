@@ -7,6 +7,7 @@ in VS_OUT {
 } fs_in;
 
 uniform sampler2D uDiffuse;
+uniform vec3 uCamPos;
 
 void main() {
   gl_FragColor = texture2D(uDiffuse, fs_in.uv);

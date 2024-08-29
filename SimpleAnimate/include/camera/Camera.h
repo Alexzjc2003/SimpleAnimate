@@ -17,7 +17,6 @@ namespace SA
     glm::mat4 getViewMatrix();
     virtual glm::mat4 getProjMatrix();
 
-
   protected:
     struct
     {

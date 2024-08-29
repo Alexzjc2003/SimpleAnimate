@@ -10,12 +10,14 @@ StaticShader::StaticShader(
   std::vector<GLuint> _sid;
   if (*_vs_path)
   {
-    _sid.push_back(create_shader_from_file(_vs_path, GL_VERTEX_SHADER));
+    _sid.push_back(load_from_file(_vs_path, GL_VERTEX_SHADER));
+    compile(_sid.back());
     glAttachShader(id, _sid.back());
   }
   if (*_fs_path)
   {
-    _sid.push_back(create_shader_from_file(_fs_path, GL_FRAGMENT_SHADER));
+    _sid.push_back(load_from_file(_fs_path, GL_FRAGMENT_SHADER));
+    compile(_sid.back());
     glAttachShader(id, _sid.back());
   }
 
@@ -32,17 +34,20 @@ StaticShader::StaticShader(
   std::vector<GLuint> _sid;
   if (*_vs_path)
   {
-    _sid.push_back(create_shader_from_file(_vs_path, GL_VERTEX_SHADER));
+    _sid.push_back(load_from_file(_vs_path, GL_VERTEX_SHADER));
+    compile(_sid.back());
     glAttachShader(id, _sid.back());
   }
   if (*_fs_path)
   {
-    _sid.push_back(create_shader_from_file(_fs_path, GL_FRAGMENT_SHADER));
+    _sid.push_back(load_from_file(_fs_path, GL_FRAGMENT_SHADER));
+    compile(_sid.back());
     glAttachShader(id, _sid.back());
   }
   if (*_gs_path)
   {
-    _sid.push_back(create_shader_from_file(_gs_path, GL_GEOMETRY_SHADER));
+    _sid.push_back(load_from_file(_gs_path, GL_GEOMETRY_SHADER));
+    compile(_sid.back());
     glAttachShader(id, _sid.back());
   }
 

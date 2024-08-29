@@ -21,6 +21,6 @@ namespace SA
 
     Texture *diffuseMap;
 
-    // static StaticShader shader;
+    static StaticShader *shader;
   };
 } // namespace SA
